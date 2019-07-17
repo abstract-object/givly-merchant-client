@@ -19,7 +19,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Dashboard products={this.state.products} cart={this.state.cart} addToCart={this.addToCart} />
+        <Dashboard products={this.state.products} cart={this.state.cart} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />
       </div>
     );
   };
@@ -34,6 +34,18 @@ class App extends Component {
         cart[product.id].quantity += 1;
       } else {
         cart[product.id].quantity = 1;
+      }
+      return { cart };
+    });
+  };
+
+  removeFromCart = (product) => {
+    this.setState(prevState => {
+      const cart = Object.assign({}, prevState.cart);
+
+      if (cart[product.id]) {
+        cart[product.id].quantity -= 1;
+        if (cart[product.id].quantity === 0) delete cart[product.id];
       }
       return { cart };
     });

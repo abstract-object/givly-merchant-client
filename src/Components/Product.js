@@ -10,7 +10,9 @@ class Product extends Component {
           <h4>{product.name}</h4>
         </header>
         <footer>
-          <button className="addToCart" onClick={this.handleAddToCart}>Add</button>
+          <p>Cart:</p>
+          <button className="addToCart" onClick={this.handleAddToCart}>+</button>
+          <button className="removeFromCart" onClick={this.handleRemoveFromCart}>-</button>
         </footer>
       </article>
     );
@@ -18,6 +20,10 @@ class Product extends Component {
 
   handleAddToCart = event => {
     this.props.addToCart(this.props.product);
+  };
+
+  handleRemoveFromCart = event => {
+    this.props.removeFromCart(this.props.product);
   };
 };
 
