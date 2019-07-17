@@ -3,3 +3,65 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#nav {
+
+  /*  */
+  font-size: 1.4em;
+  height: 100px;
+  background-color:#8DD0CC;
+  color: #F2F6F5;
+  width: 100%;
+}
+
+.row {
+  height: 100vh;
+  width: 100%;
+}
+
+.col {
+  
+  /*  */
+  background-color: #ffd5b3;
+  border: 1px solid #1C6EA4;
+  
+}
+
+#search {
+  /*  */
+  padding: 10px;
+  width: 80%;
+}
+
+.searchBar {
+  /*  */
+  height: 50px;
+}
+
+.product {
+  border: 1px solid #1C6EA4;
+  padding: 10px;
+  margin: 5px;
+}
+
+
+#receiptID {
+  border: 1px solid #1C6EA4;
+  padding: 20px;
+}
+
+.cart-item {
+  border: 1px solid #1C6EA4;
+  padding: 10px;
+  margin: 5px;
+}
+
+#footer {
+  bottom: 0;
+  padding: 5px;
+  position: fixed;
+  width: 100%;
+  /*  */
+  background-color: #8DD0CC;
+  color: #F2F6F5;
+}

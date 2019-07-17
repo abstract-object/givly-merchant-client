@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 import Header from './Header.js';
 import SearchBar from './SearchBar.js';
 import ProductList from './ProductList.js';
@@ -11,9 +12,17 @@ class Dashboard extends Component {
     return (
       <div>
         <Header />
-        <SearchBar />
-        <ProductList products={this.props.products} addToCart={this.props.addToCart} removeFromCart={this.props.removeFromCart} />
-        <Cart cart={this.props.cart} />
+        <div className="container">
+          <section className="row">
+            <section className="col">
+              <SearchBar />
+              <ProductList products={this.props.products} addToCart={this.props.addToCart} removeFromCart={this.props.removeFromCart} />
+            </section>
+            <section className="col">
+              <Cart cart={this.props.cart} />
+            </section>
+          </section>
+        </div>
         <Footer />
       </div>
     );
