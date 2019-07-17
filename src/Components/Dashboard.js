@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+
 
 import Header from './Header.js';
 import SearchBar from './SearchBar.js';
@@ -11,9 +13,17 @@ class Dashboard extends Component {
     return (
       <div>
         <Header />
-        <SearchBar />
-        <ProductList products={this.props.products} changeCart={this.props.changeCart} />
-        <Cart cart={this.props.cart} />
+          <Container>
+            <Row>
+              <Col>
+                <SearchBar />
+                <ProductList products={this.props.products} changeCart={this.props.changeCart} />
+              </Col>
+              <Col>
+                <Cart cart={this.props.cart} />
+              </Col>
+            </Row>
+          </Container>
         <Footer />
       </div>
     );
