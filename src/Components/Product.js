@@ -11,19 +11,18 @@ class Product extends Component {
         </header>
         <footer>
           <p>Cart:</p>
-          <button className="addToCart" onClick={this.handleAddToCart}>+</button>
-          <button className="removeFromCart" onClick={this.handleRemoveFromCart}>-</button>
+          <button onClick={this.handleChangeCart}>+</button>
+          <button onClick={this.handleChangeCart}>-</button>
         </footer>
       </article>
     );
   };
 
-  handleAddToCart = event => {
-    this.props.addToCart(this.props.product);
-  };
+  handleChangeCart = event => {
+    let add = true;
+    if (event.target.innerHTML === "-") add = false;
 
-  handleRemoveFromCart = event => {
-    this.props.removeFromCart(this.props.product);
+    this.props.changeCart(this.props.product, add);
   };
 };
 

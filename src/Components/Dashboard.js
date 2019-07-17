@@ -13,17 +13,17 @@ class Dashboard extends Component {
     return (
       <div>
         <Header />
-        <Container>
-          <Row>
-            <Col>
-              <SearchBar />
-              <ProductList products={this.props.products} addToCart={this.props.addToCart} removeFromCart={this.props.removeFromCart} />
-            </Col>
-            <Col>
-              <Cart cart={this.props.cart} />
-            </Col>
-          </Row>
-        </Container>
+          <Container>
+            <Row>
+              <Col>
+                <SearchBar />
+                <ProductList products={this.props.products} changeCart={this.props.changeCart} />
+              </Col>
+              <Col>
+                <Cart cart={this.props.cart} />
+              </Col>
+            </Row>
+          </Container>
         <Footer />
       </div>
     );
