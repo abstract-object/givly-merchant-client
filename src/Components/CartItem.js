@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 class CartItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { price: 0 };
+  };
+
   render() {
     const cartItem = this.props.cartItem;
     cartItem.price = 0;
@@ -13,20 +18,32 @@ class CartItem extends Component {
           <span className="quantity">Quantity: {cartItem.quantity}</span>
         </header>
         <footer>
-          <p>Price per item: {cartItem.price}</p>
-          <button className="raisePrice" onClick={this.handleRaisePrice}>+</button>
-          <button className="lowerPrice" onClick={this.handleLowerPrice}>-</button>
+          <p>Price per item: {this.state.price}</p>
+          <button onClick={this.handleChangePrice}>+</button>
+          <button onClick={this.handleChangePrice}>-</button>
         </footer>
       </article>
     );
   };
 
-  handleRaisePrice = event => {
-    
+  handleChangePrice = event => {
+    let add = true;
+    if (event.target.innerHTML === "-") add = false;
+
+    this.changePrice(add);
   };
 
-  handleLowerPrice = event => {
-    
+  changePrice = (add) => {
+    let amount = -1;
+      
+    if (add) {
+      amount = 1;
+    }
+
+    let newPrice = this.state.price + amount;
+    if (newPrice < 0) newPrice = 0;
+
+    this.setState({price: newPrice});
   };
 };
 

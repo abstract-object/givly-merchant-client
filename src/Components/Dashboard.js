@@ -12,7 +12,7 @@ class Dashboard extends Component {
       <div>
         <Header />
         <SearchBar />
-        <ProductList products={this.props.products} addToCart={this.props.addToCart} removeFromCart={this.props.removeFromCart} />
+        <ProductList products={this.props.products} changeCart={this.props.changeCart} />
         <Cart cart={this.props.cart} />
         <Footer />
       </div>

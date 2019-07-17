@@ -19,37 +19,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Dashboard products={this.state.products} cart={this.state.cart} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />
+        <Dashboard products={this.state.products} cart={this.state.cart} changeCart={this.changeCart} />
       </div>
     );
   };
 
-  addToCart = (product) => {
+  changeCart = (product, add) => {
     this.setState(prevState => {
       const cart = Object.assign({}, prevState.cart);
+      let amount = -1;
+      
+      if (add) {
+        amount = 1;
+      }
 
       cart[product.id] = product;
 
       if (cart[product.id].quantity) {
-        cart[product.id].quantity += 1;
-      } else {
+        cart[product.id].quantity += amount;
+      } else if (add) {
         cart[product.id].quantity = 1;
       }
+
+      if (!cart[product.id].quantity || cart[product.id].quantity <= 0) delete cart[product.id];
       return { cart };
     });
   };
-
-  removeFromCart = (product) => {
-    this.setState(prevState => {
-      const cart = Object.assign({}, prevState.cart);
-
-      if (cart[product.id]) {
-        cart[product.id].quantity -= 1;
-        if (cart[product.id].quantity === 0) delete cart[product.id];
-      }
-      return { cart };
-    });
-  };
-}
+};
 
 export default App;
