@@ -55,13 +55,3 @@ body {
   padding: 10px;
   margin: 5px;
 }
-
-#footer {
-  bottom: 0;
-  padding: 5px;
-  position: fixed;
-  width: 100%;
-  /*  */
-  background-color: #8DD0CC;
-  color: #F2F6F5;
-}
