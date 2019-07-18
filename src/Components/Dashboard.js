@@ -19,6 +19,12 @@ class Dashboard extends Component {
           image: "http://harboarts.com/shirtdesigner/jpg_design_exports/loaf-of-bread-vector-graphics_template_1434971128379T0A.jpg",
           name: "Generic bread",
           price: 1
+        },
+        2: {
+          id: 2,
+          image: "",
+          name: "Generic pants",
+          price: 1
         }
       },
       totalPrice: 0
@@ -66,7 +72,7 @@ class Dashboard extends Component {
 
       if (!cart[id].quantity || cart[id].quantity <= 0) delete cart[id];
 
-      totalPrice = this.updateTotalPrice();
+      totalPrice = this.updateTotalPrice(cart);
       
       return { cart, totalPrice };
     });
@@ -87,16 +93,16 @@ class Dashboard extends Component {
       if (newPrice < 0) newPrice = 0;
       cart[id].price = newPrice;
 
-      totalPrice = this.updateTotalPrice();
+      totalPrice = this.updateTotalPrice(cart);
       
       return { cart, totalPrice };
     });
   };
 
-  updateTotalPrice = () => {
-    return Object.values(this.state.cart).reduce((total, item) => {
+  updateTotalPrice = (cart) => {
+    return Object.values(cart).reduce((total, item) => {
       return total + (item.quantity * item.price);
-    }, 0)
+    }, 0);
   };
 };
 
