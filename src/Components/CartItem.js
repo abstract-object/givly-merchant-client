@@ -20,6 +20,7 @@ class CartItem extends Component {
         <footer>
           <p>Price per item: {this.state.price}</p>
           <button onClick={this.handleChangePrice}>+</button>
+          <span> Price </span>
           <button onClick={this.handleChangePrice}>-</button>
         </footer>
       </article>
@@ -44,6 +45,7 @@ class CartItem extends Component {
     if (newPrice < 0) newPrice = 0;
 
     this.setState({price: newPrice});
+    this.props.addRowPrice(add);
   };
 };
 
