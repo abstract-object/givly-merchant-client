@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 
-import Header from './Header.js';
+import Header from '../Header.js';
 import SearchBar from './SearchBar.js';
 import ProductList from './ProductList.js';
 import Cart from './Cart.js';
-import Footer from './Footer.js';
+import Footer from '../Footer.js';
 
 class Dashboard extends Component {
   constructor(props) {
