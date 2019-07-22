@@ -21,34 +21,24 @@ class Login extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    return fetch(`${HOST}/merchant/create`, {
-      method: 'POST',
-      body: JSON.stringify({
-        storeEmail: this.state.storeEmail,
-        storeName: this.state.storeName
-      }),
+
+    const options = {
+      method: 'post',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
-      mode: 'cors'
-    }).then(response => console.log(response))
-      .then(data => {
-        console.log(data);
-        /* localStorage.setItem('merchant_id', data.auth_token);
-        if (!localStorage.id_token || localStorage.id_token === "undefined") {
-          this.props.loginError(data.errors)
-          this.setState({error: Object.entries(data)})
-          console.log(data)
-        } else {
-          console.log(data)
-          localStorage.setItem('gravatar', data.user.gravatar);
-          this.props.receiveLogin(data);
-          let url = `http://localhost:3001/users/${parseJwt(localStorage.id_token).user_id}/task_lists`
-          this.props.fetchTaskLists(url);
-          !!this.props.history ? this.props.history.push('/') : history.push('/');
-        } */
-    });
-  };
+      body: `storeName=${this.state.storeName}&storeEmail=${this.state.storeEmail}`,
+      mode:'cors'
+    }
+
+    fetch(`${HOST}/merchant/login`, options)
+      .then((response) => {
+        response.json()
+        .then((data) => {console.log(data)})
+        .catch((err) => {console.log(err)})
+      })
+      .catch(err => console.log(err))
+  }
 
   render() {
     return (
