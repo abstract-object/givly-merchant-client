@@ -5,7 +5,7 @@ class ItemsWeek extends Component {
     constructor(props){
         super(props);
         this.state ={
-            chartData :{
+            itemData :{
                 labels: ['Banana', 'Pants', 'Coffee', 'Gloves', 'Kite'],
                 datasets: 
                 [{
