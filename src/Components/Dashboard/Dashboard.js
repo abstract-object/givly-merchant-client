@@ -29,12 +29,13 @@ class Dashboard extends Component {
       },
       totalPrice: 0,
       recipientBalance: 0,
-      error: null
+      status: null
     };
   };
 
   changeCart = (id, add) => {
     this.setState(prevState => {
+      const status = (prevState.status && prevState.status[0] === "cart") ? null : prevState.status;
       const cart = Object.assign({}, prevState.cart);
       let totalPrice = prevState.totalPrice;
 
@@ -56,7 +57,7 @@ class Dashboard extends Component {
 
       totalPrice = this.updateTotalPrice(cart);
       
-      return { cart, totalPrice };
+      return { cart, status, totalPrice };
     });
   };
 
@@ -115,16 +116,19 @@ class Dashboard extends Component {
           options.body = `transaction=${JSON.stringify(transaction)}`;
           console.log(options);
 
-          fetch(`${this.props.host}/transaction/submitTx`, options)
+          this.setState({cart: {}, status: ["cart", "Thank you, order successfully processed."]})
+
+          /* fetch(`${this.props.host}/transaction/submitTx`, options)
           .then((response) => {
             response.json()
             .then((data) => {
-              console.log(data);
+              this.setState({cart: {}, status: ["cart", "Thank you, order successfully processed."]})
             })
-          })  
+            .catch((err) => {this.setState({status: ["error", "Failed to add transaction."]})});
+          }) */
         }
       })
-      .catch((err) => {this.setState({error: err})});
+      .catch((err) => {this.setState({status: ["error", "Failed to get recipient balance."]})});
     })
     .catch(err => console.log(err));
   };
@@ -147,6 +151,8 @@ class Dashboard extends Component {
               </Col>
               <Col>
                 {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} />}
+                {(this.state.status && this.state.status[0] === "cart") && <p>{this.state.status[1]}</p>}
+                {(this.state.status && this.state.status[0] === "error") && <p>{this.state.status[1]}</p>}
               </Col>
             </Row>
           </Container>
