@@ -111,15 +111,16 @@ class Dashboard extends Component {
             });
           });
       
+          console.log(transaction)
           options.body = `transaction=${JSON.stringify(transaction)}`;
           console.log(options);
 
           fetch(`${this.props.host}/transaction/submitTx`, options)
           .then((response) => {
-            console.log(response)
-            // .then((data) => {
-            //   console.log(data);
-            // })
+            response.json()
+            .then((data) => {
+              console.log(data);
+            })
           })  
         }
       })
