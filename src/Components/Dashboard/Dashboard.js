@@ -35,17 +35,17 @@ class Dashboard extends Component {
     return (
       <div>
         <Header merchant={this.props.merchant} logout={this.props.logout} />
-          <Container>
-            <Row>
-              <Col>
-                <SearchBar />
-                <ProductList products={this.state.products} changeCart={this.changeCart} />
-              </Col>
-              <Col>
-                <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} />
-              </Col>
-            </Row>
-          </Container>
+        <Container>
+          <Row>
+            <Col>
+              <SearchBar />
+              <ProductList products={this.state.products} changeCart={this.changeCart} />
+            </Col>
+            <Col>
+              <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} />
+            </Col>
+          </Row>
+        </Container>
         <Footer />
       </div>
     );
