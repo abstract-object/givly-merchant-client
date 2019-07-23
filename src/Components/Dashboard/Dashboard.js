@@ -27,28 +27,10 @@ class Dashboard extends Component {
           price: 1
         }
       },
-      totalPrice: 0
+      totalPrice: 0,
+      recipientBalance: 0,
+      error: null
     };
-  };
-
-  render() {
-    return (
-      <div>
-        <Header merchant={this.props.merchant} logout={this.props.logout} />
-          <Container>
-            <Row>
-              <Col>
-                <SearchBar />
-                <ProductList products={this.state.products} changeCart={this.changeCart} />
-              </Col>
-              <Col>
-                <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} />
-              </Col>
-            </Row>
-          </Container>
-        <Footer />
-      </div>
-    );
   };
 
   changeCart = (id, add) => {
@@ -90,7 +72,7 @@ class Dashboard extends Component {
       }
 
       let newPrice = cart[id].price + amount;
-      if (newPrice < 0) newPrice = 0;
+      if (newPrice < 1) newPrice = 1;
       cart[id].price = newPrice;
 
       totalPrice = this.updateTotalPrice(cart);
@@ -99,10 +81,77 @@ class Dashboard extends Component {
     });
   };
 
+  addTransaction = recipientId => {
+    const options = {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      body: `recipientCryptoId=${recipientId}`,
+      mode: 'cors'
+    }
+
+    fetch(`${this.props.host}/merchant/verifyAccount`, options)
+    .then((response) => {
+      response.json()
+      .then((data) => {
+        this.setState({recipientBalance: data.balance});
+        if (this.state.totalPrice > 0 && this.state.recipientBalance >= this.state.totalPrice) {
+          const transaction = {
+            totalPrice: this.state.totalPrice,
+            merchantUuid: this.props.merchant.id,
+            recipientCryptoId: recipientId,
+            products: []
+          };
+      
+          Object.values(this.state.cart).forEach(cartItem => {
+            transaction.products.push({
+              productName: cartItem.name,
+              price: cartItem.price * cartItem.quantity
+            });
+          });
+      
+          options.body = `transaction=${JSON.stringify(transaction)}`;
+          console.log(options);
+
+          fetch(`${this.props.host}/transaction/submitTx`, options)
+          .then((response) => {
+            console.log(response)
+            // .then((data) => {
+            //   console.log(data);
+            // })
+          })  
+        }
+      })
+      .catch((err) => {this.setState({error: err})});
+    })
+    .catch(err => console.log(err));
+  };
+
   updateTotalPrice = (cart) => {
     return Object.values(cart).reduce((total, item) => {
       return total + (item.quantity * item.price);
     }, 0);
+  };
+
+  render() {
+    return (
+      <div>
+        <Header merchant={this.props.merchant} logout={this.props.logout} />
+          <Container>
+            <Row>
+              <Col>
+                <SearchBar />
+                <ProductList products={this.state.products} changeCart={this.changeCart} />
+              </Col>
+              <Col>
+                {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} />}
+              </Col>
+            </Row>
+          </Container>
+        <Footer />
+      </div>
+    );
   };
 };
 

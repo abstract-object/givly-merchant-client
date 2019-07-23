@@ -3,6 +3,8 @@ import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard.js'
 import Login from './Components/Auth/Login.js'
 
+const HOST = "http://35.230.1.69";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <div className="Givly Merchant Portal">
-        {(localStorage.merchant_id && this.state.merchant.id) ? <Dashboard merchant={this.state.merchant} logout={this.logout} /> : <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} />}
+        {(localStorage.merchant_id && this.state.merchant.id) ? <Dashboard merchant={this.state.merchant} logout={this.logout} host={HOST} /> : <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} host={HOST} />}
       </div>
     );
   };

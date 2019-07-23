@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 class CartItem extends Component {
+  handleChangePrice = event => {
+    let add = true;
+    if (event.target.innerHTML === "-") add = false;
+
+    this.props.changePrice(this.props.cartItem.id, add);
+  };
+
   render() {
     const cartItem = this.props.cartItem;
     const rowPrice = cartItem.price * cartItem.quantity;
@@ -22,13 +29,6 @@ class CartItem extends Component {
         </footer>
       </article>
     );
-  };
-
-  handleChangePrice = event => {
-    let add = true;
-    if (event.target.innerHTML === "-") add = false;
-
-    this.props.changePrice(this.props.cartItem.id, add);
   };
 };
 
