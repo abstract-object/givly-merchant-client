@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class CartItem extends Component {
   render() {
     const cartItem = this.props.cartItem;
+    const rowPrice = cartItem.price * cartItem.quantity;
 
     return (
       <article className="cartItem">
@@ -16,6 +17,8 @@ class CartItem extends Component {
           <button onClick={this.handleChangePrice}>+</button>
           <span> Price </span>
           <button onClick={this.handleChangePrice}>-</button>
+          <br />
+          <p>Row price: {rowPrice}</p>
         </footer>
       </article>
     );

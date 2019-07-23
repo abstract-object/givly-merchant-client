@@ -34,7 +34,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header merchant={this.props.merchant} logout={this.props.logout} />
           <Container>
             <Row>
               <Col>
