@@ -27,7 +27,7 @@ class ItemsWeek extends Component {
         return (
             <div className='chart'>
                 < Doughnut 
-                    data={this.state.chartData}
+                    data={this.state.itemData}
                     width={100}
                     height={500}
                     options={{

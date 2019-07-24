@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Dashboard from './Components/Dashboard/Dashboard.js'
-import Login from './Components/Auth/Login.js'
+// import Dashboard from './Components/Dashboard/Dashboard.js'
+// import  Login from './Components/Auth/Login.js'
+import AnalyticsPage from './Components/Analytics/AnalyticsPage';
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +12,8 @@ class App extends Component {
         id: null,
         storeEmail: null,
         storeName: null,
-      }
+      },
+      
     };
   };
 
@@ -51,7 +53,8 @@ class App extends Component {
   render() {
     return (
       <div className="Givly Merchant Portal">
-        {(localStorage.merchant_id && this.state.merchant.id) ? <Dashboard merchant={this.state.merchant} logout={this.logout} /> : <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} />}
+        {/* {(localStorage.merchant_id && this.state.merchant.id) ? <Dashboard merchant={this.state.merchant} logout={this.logout} /> : <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} />} */}
+        <AnalyticsPage givsWeekData={this.state.givsWeekData} />
       </div>
     );
   };
