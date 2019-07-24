@@ -18,13 +18,15 @@ class Dashboard extends Component {
           id: 1,
           image: "http://harboarts.com/shirtdesigner/jpg_design_exports/loaf-of-bread-vector-graphics_template_1434971128379T0A.jpg",
           name: "Generic bread",
-          price: 1
+          price: 1,
+          quantity: 0
         },
         2: {
           id: 2,
           image: "",
           name: "Generic pants",
-          price: 1
+          price: 1,
+          quantity: 0
         }
       },
       totalPrice: 0,
@@ -58,6 +60,23 @@ class Dashboard extends Component {
       totalPrice = this.updateTotalPrice(cart);
       
       return { cart, status, totalPrice };
+    });
+  };
+
+  clearCart = () => {
+    this.setState(prevState => {
+      let cart = Object.assign({}, prevState.cart);
+
+      Object.values(cart).forEach(item => {
+        item.quantity = 0;
+        item.price = 1;
+      });
+
+      const totalPrice = this.updateTotalPrice(cart);
+
+      cart = {};
+
+      return { cart, totalPrice };
     });
   };
 
@@ -122,7 +141,8 @@ class Dashboard extends Component {
             response.json()
             .then((data) => {
               console.log(data)
-              this.setState({cart: {}, status: ["cart", "Thank you, order successfully processed."]});
+              this.clearCart();
+              this.setState({status: ["cart", "Thank you, order successfully processed."]});
             })
             .catch((err) => {this.setState({status: ["error", "Failed to add transaction."]})});
           })
