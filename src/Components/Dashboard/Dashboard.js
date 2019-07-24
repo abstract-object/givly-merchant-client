@@ -31,7 +31,8 @@ class Dashboard extends Component {
       },
       totalPrice: 0,
       recipientBalance: 0,
-      status: null
+      status: null,
+      loading: false
     };
   };
 
@@ -102,6 +103,13 @@ class Dashboard extends Component {
   };
 
   addTransaction = recipientId => {
+    if (!recipientId) {
+      this.setState({status: ["error", `Failed to add transaction. Invalid recipient id.`]});
+      return null;
+    }
+
+    this.setState({loading: true});
+
     const options = {
       method: 'post',
       headers: {
@@ -132,25 +140,24 @@ class Dashboard extends Component {
             });
           });
       
-          console.log(transaction)
           options.body = `transaction=${JSON.stringify(transaction)}`;
-          console.log(options);
 
           fetch(`${this.props.host}/transaction/submitTx`, options)
           .then((response) => {
+            console.log(response)
             response.json()
             .then((data) => {
               console.log(data)
               this.clearCart();
-              this.setState({status: ["cart", "Thank you, order successfully processed."]});
+              this.setState({loading: false, status: ["cart", "Thank you, order successfully processed."]});
             })
-            .catch((err) => {this.setState({status: ["error", "Failed to add transaction."]})});
-          })
+            .catch((err) => {this.setState({loading: false, status: ["error", "Failed to add transaction."]})});
+          });
         } else {
-          this.setState({status: ["error", `Failed to add transaction. Recipient's current balance is below the total price of these items.`]});
+          this.setState({loading: false, status: ["error", `Failed to add transaction. Recipient's current balance is below the total price of these items.`]});
         }
       })
-      .catch((err) => {this.setState({status: ["error", "Failed to get recipient balance."]})});
+      .catch((err) => {this.setState({loading: false, status: ["error", "Failed to get recipient balance."]})});
     })
     .catch(err => console.log(err));
   };
@@ -173,6 +180,7 @@ class Dashboard extends Component {
               </Col>
               <Col>
                 {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} />}
+                {this.state.loading && <h3>Doing crypto magic...</h3>}
                 {(this.state.status && this.state.status[0] === "cart") && <p>{this.state.status[1]}</p>}
                 {(this.state.status && this.state.status[0] === "error") && <p>{this.state.status[1]}</p>}
               </Col>
