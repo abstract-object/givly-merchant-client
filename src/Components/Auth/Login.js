@@ -25,7 +25,7 @@ class Login extends Component {
         response.json()
         .then((data) => {
           this.setState({error: null});
-          this.props.login(data.merchantUuid);
+          this.props.login(data);
         })
         .catch((err) => {this.setState({error: err})});
       })

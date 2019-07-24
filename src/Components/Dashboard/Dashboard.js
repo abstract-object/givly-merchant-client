@@ -101,6 +101,7 @@ class Dashboard extends Component {
           const transaction = {
             totalPrice: this.state.totalPrice,
             merchantUuid: this.props.merchant.id,
+            merchantCryptoId: this.props.merchant.cryptoId,
             recipientCryptoId: recipientId,
             products: []
           };
@@ -116,16 +117,17 @@ class Dashboard extends Component {
           options.body = `transaction=${JSON.stringify(transaction)}`;
           console.log(options);
 
-          this.setState({cart: {}, status: ["cart", "Thank you, order successfully processed."]})
-
-          /* fetch(`${this.props.host}/transaction/submitTx`, options)
+          fetch(`${this.props.host}/transaction/submitTx`, options)
           .then((response) => {
             response.json()
             .then((data) => {
-              this.setState({cart: {}, status: ["cart", "Thank you, order successfully processed."]})
+              console.log(data)
+              this.setState({cart: {}, status: ["cart", "Thank you, order successfully processed."]});
             })
             .catch((err) => {this.setState({status: ["error", "Failed to add transaction."]})});
-          }) */
+          })
+        } else {
+          this.setState({status: ["error", `Failed to add transaction. Recipient's current balance is below the total price of these items.`]});
         }
       })
       .catch((err) => {this.setState({status: ["error", "Failed to get recipient balance."]})});

@@ -3,16 +3,17 @@ import './App.css';
 import Dashboard from './Components/Dashboard/Dashboard.js'
 import Login from './Components/Auth/Login.js'
 
-const HOST = "http://35.230.1.69";
+const HOST = "http://35.203.20.184";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
       merchant: {
-        id: null,
-        storeEmail: null,
-        storeName: null,
+        id: (localStorage.merchant_id ? localStorage.merchant_id : null),
+        cryptoId: (localStorage.merchant_crypto_id ? localStorage.merchant_crypto_id : null),
+        storeEmail: (localStorage.merchant_email ? localStorage.merchant_email : null),
+        storeName: (localStorage.merchant_store_name ? localStorage.merchant_store_name : null),
       }
     };
   };
@@ -28,12 +29,18 @@ class App extends Component {
     });
   };
 
-  login = (id) => {
-    localStorage.setItem('merchant_id', id);
+  login = (data) => {
+    localStorage.setItem('merchant_id', data.merchantUuid);
+    localStorage.setItem('merchant_crypto_id', data.merchantCryptoId);
+    localStorage.setItem('merchant_email', data.storeEmail);
+    localStorage.setItem('merchant_store_name', data.storeName);
+
     this.setState(prevState => {
       const merchant = Object.assign({}, prevState.merchant);
-      merchant.id = id;
-      
+      merchant.id = data.merchantUuid;
+      merchant.cryptoId = data.merchantCryptoId;
+      merchant.storeEmail = data.storeEmail;
+      merchant.storeName = data.storeName;
       return { merchant };
     });
   };
@@ -44,6 +51,7 @@ class App extends Component {
     this.setState({
       merchant: {
         id: null,
+        cryptoId: null,
         storeEmail: null,
         storeName: null,
       }
