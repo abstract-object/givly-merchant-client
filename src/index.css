@@ -66,3 +66,22 @@ a:active {
   padding: 10px;
   margin: 5px;
 }
+
+
+/* Analytics */
+
+#givsChart {
+  display:flex;
+  width: 800px;
+  height: 350px;
+  padding: 10px;
+  margin: 10px;
+}
+
+#itemsChart {
+  display:flex;
+  width: 800px;
+  height: 350px;
+  padding: 10px;
+  margin: 10px;
+}
