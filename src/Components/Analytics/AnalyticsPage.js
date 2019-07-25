@@ -9,15 +9,16 @@ class AnalyticsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            givsWeekData:{}
+            givsWeekData:{},
+            itemData:{}
         }
     }
 
     componentWillMount(){
-        this.getGivsWeekData();
+        this.charts();
     }
 
-    getGivsWeekData(){
+    charts(){
         this.setState({
             givsWeekData :{
                 labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -34,6 +35,22 @@ class AnalyticsPage extends Component {
                         'rgba(255, 159, 64, 0.3)'
                     ],
                 }
+            ]},
+            itemData: {
+                labels: ['Banana', 'Pants', 'Coffee', 'Gloves', 'Kite'],
+                datasets: 
+                [{
+                    label:'GIVs this week',
+                    data:[3,7,2,8,2],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)',
+                        'rgba(75, 192, 192, 0.3)',
+                        'rgba(153, 102, 255, 0.3)',
+                        'rgba(255, 159, 64, 0.3)'
+                    ],
+                }
             ]}
         })
     }
@@ -41,8 +58,8 @@ class AnalyticsPage extends Component {
         return (
             <div>
                 <Header merchant={this.props.merchant} logout={this.props.logout} />
-                <GivsWeek givsWeekdata={this.state.givsWeekdata} />
-                <ItemsWeek />
+                <GivsWeek givsWeekData={this.state.givsWeekData} />
+                <ItemsWeek itemData={this.state.itemData}/>
                 <Footer />
             </div>
         );
