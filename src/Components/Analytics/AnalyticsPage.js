@@ -11,10 +11,13 @@ import RecipientsWeek from './RecipientsWeek.js';
 class AnalyticsPage extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             givsWeekData:{},
             givsMonthData:{},
             itemData:{},
+            recipientData:{},
+            current: 0,
             error: null
         }
     }
@@ -111,6 +114,7 @@ class AnalyticsPage extends Component {
                         'rgba(255, 99, 132, 0.3)',
                         'rgba(54, 162, 235, 0.3)',
                         'rgba(255, 206, 86, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
                         'rgba(75, 192, 192, 0.3)',
                         'rgba(153, 102, 255, 0.3)',
                         'rgba(255, 159, 64, 0.3)'
@@ -118,10 +122,6 @@ class AnalyticsPage extends Component {
                 }
             ]}
         })
-    }
-
-    onClick = () => {
-        
     }
 
     getTransactions = () => {
@@ -145,20 +145,26 @@ class AnalyticsPage extends Component {
         .catch(err => console.log(err));
     };
 
+    toggle(index) {
+        this.setState({
+            current:index
+        })
+    }
     render() {
         return (
             <div>
                 <Header merchant={this.props.merchant} logout={this.props.logout} />
                 <div id="givs-charts">
-                    <a href='#' onClick > This Week </a>
-                    <a href='#' onClick > This Month </a> 
-                    <GivsWeek givsWeekData={this.state.givsWeekData} />
-                    <GivsMonth givsMonthData={this.state.givsMonthData} />
+                    <a href='#' onClick={this.toggle.bind(this,1)}> This Week </a>
+                    <a href='#' onClick={this.toggle.bind(this,2)}> This Month </a> 
+                    { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
                 </div>
+
                 <div id="item-chart">
                     <ItemsWeek itemData={this.state.itemData} />
                     <RecipientsWeek recipientData={this.state.recipientData} />
                 </div>
+
                 <Footer />
                 
             </div>

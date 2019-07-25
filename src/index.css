@@ -74,3 +74,10 @@ div .chart {
   margin: 10px;
 }
 
+.collapsible {
+  display:none;
+}
+
+.collapsible.open {
+  display:block;
+}
