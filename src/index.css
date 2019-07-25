@@ -4,14 +4,28 @@ body {
   font-family: sans-serif;
 }
 
-#nav {
+/* Navigation */
 
-  /*  */
+img.givlyLogo {
+  width: 250px;
+  height: auto;
+}
+
+#nav {
   font-size: 1.4em;
   height: 100px;
   background-color:#8DD0CC;
   color: #F2F6F5;
   width: 100%;
+  
+}
+#dashboard, #analytics, #logout {
+  padding: 15px;
+  
+}
+
+a:active {
+  color: white;
 }
 
 .row {
@@ -21,9 +35,6 @@ body {
 
 .col {
   
-  /*  */
-  background-color: #ffd5b3;
-  border: 1px solid #1C6EA4;
   
 }
 
@@ -39,15 +50,15 @@ body {
 }
 
 .product {
-  border: 1px solid #1C6EA4;
   padding: 10px;
   margin: 5px;
 }
 
+.recipientId {
+  padding: 10px;
+  width: 80%;
+  margin: 5px;
 
-#receiptID {
-  border: 1px solid #1C6EA4;
-  padding: 20px;
 }
 
 .cart-item {

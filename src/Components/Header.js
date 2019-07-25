@@ -7,9 +7,9 @@ class Header extends Component {
     return (
       <nav id="nav">
         <img src={logo} width="113" height="42" className="givlyLogo" alt="givly"/>
-        <span><Link to="/">{this.props.merchant.storeName} Dashboard</Link></span> 
-        <span><Link to="/analytics">Analytics</Link></span> 
-        <a href="#"><span onClick={this.props.logout}>Log out</span></a>
+        <span id='dashboard'> <Link to="/">{this.props.merchant.storeName} Dashboard</Link></span> 
+        <span id='analytics'> <Link to="/analytics">Analytics</Link></span> 
+        <a href="#"><span id='logout' onClick={this.props.logout}>Log out</span></a>
       </nav>
     );
   };
