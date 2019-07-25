@@ -2,17 +2,11 @@ import React, {Component} from 'react';
 import {Bar} from 'react-chartjs-2';
 
 class GivsWeek extends Component {
-    constructor(props){
-        super(props);
-        this.state ={
-            givsWeekData : props.givsWeekData
-        } 
-    }
     render () {
         return (
             <div className='chart'>
                 <Bar 
-                    data={this.state.givsWeekData}
+                    data={this.props.givsWeekData}
                     width={50}
                     height={400}
                     options={{ 

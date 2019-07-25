@@ -10,12 +10,14 @@ class AnalyticsPage extends Component {
         super(props);
         this.state = {
             givsWeekData:{},
-            itemData:{}
+            itemData:{},
+            error: null
         }
     }
 
     componentWillMount(){
         this.charts();
+        this.getTransactions();
     }
 
     charts(){
@@ -54,6 +56,28 @@ class AnalyticsPage extends Component {
             ]}
         })
     }
+
+    getTransactions = () => {
+      const options = {
+        method: "post",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: `merchantUuid=${this.props.merchant.id}`,
+        mode:"cors"
+      };
+      
+      fetch(`${this.props.host}/transaction/getTxByMerchant`, options)
+      .then((response) => {
+      response.json()
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => {this.setState({error: err})});
+      })
+      .catch(err => console.log(err));
+    };
+
     render() {
         return (
             <div>

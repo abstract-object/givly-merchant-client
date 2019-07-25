@@ -70,7 +70,7 @@ class App extends Component {
           render={(props) => <Dashboard {...props} merchant={this.state.merchant} logout={this.logout} host={HOST}/>}
           />
           <Route path='/analytics' 
-          render={(props) => <AnalyticsPage {...props} merchant={this.state.merchant}/>}
+          render={(props) => <AnalyticsPage {...props} merchant={this.state.merchant} host={HOST}/>}
           />
         </Switch>
         :
