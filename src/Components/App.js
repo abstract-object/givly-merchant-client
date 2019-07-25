@@ -4,7 +4,7 @@ import {Switch, Route} from "react-router-dom";
 import "../App.css";
 import Dashboard from "./Dashboard/Dashboard.js";
 import Login from "./Auth/Login.js";
-import AnalyticsPage from './Components/Analytics/AnalyticsPage';
+import AnalyticsPage from './Analytics/AnalyticsPage';
 
 const HOST = "http://35.203.20.184";
 
@@ -70,7 +70,7 @@ class App extends Component {
           render={(props) => <Dashboard {...props} merchant={this.state.merchant} logout={this.logout} host={HOST}/>}
           />
           <Route path='/analytics' 
-          render={(props) => <AnalyticsPage {...props} />}
+          render={(props) => <AnalyticsPage {...props} merchant={this.state.merchant}/>}
           />
         </Switch>
         :
