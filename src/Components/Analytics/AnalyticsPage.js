@@ -21,7 +21,7 @@ class AnalyticsPage extends Component {
 
     componentWillMount(){
         this.charts();
-        this.getTransactions();
+        // this.getTransactions();
     }
 
     charts(){
@@ -120,6 +120,10 @@ class AnalyticsPage extends Component {
         })
     }
 
+    onClick = () => {
+        
+    }
+
     getTransactions = () => {
         const options = {
             method: "post",
@@ -146,9 +150,10 @@ class AnalyticsPage extends Component {
             <div>
                 <Header merchant={this.props.merchant} logout={this.props.logout} />
                 <div id="givs-charts">
+                    <a href='#' onClick > This Week </a>
+                    <a href='#' onClick > This Month </a> 
                     <GivsWeek givsWeekData={this.state.givsWeekData} />
                     <GivsMonth givsMonthData={this.state.givsMonthData} />
-
                 </div>
                 <div id="item-chart">
                     <ItemsWeek itemData={this.state.itemData} />
