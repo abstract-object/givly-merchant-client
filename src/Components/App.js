@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
-import Dashboard from './Components/Dashboard/Dashboard.js'
-import Login from './Components/Auth/Login.js'
+import { Switch, Route } from "react-router-dom";
+
+import '../App.css';
+import Dashboard from './Dashboard/Dashboard.js';
+import Login from './Auth/Login.js';
+import Analytics from './Analytics/Analytics.js';
 
 const HOST = "http://35.203.20.184";
 
@@ -61,7 +64,15 @@ class App extends Component {
   render() {
     return (
       <div className="Givly Merchant Portal">
-        {(localStorage.merchant_id && this.state.merchant.id) ? <Dashboard merchant={this.state.merchant} logout={this.logout} host={HOST} /> : <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} host={HOST} />}
+        {(localStorage.merchant_id && this.state.merchant.id) ? 
+        <Switch>
+          <Route exact path='/' 
+          render={(props) => <Dashboard {...props} merchant={this.state.merchant} logout={this.logout} host={HOST} />}
+          />
+          <Route path='/analytics' component={Analytics} />
+        </Switch>
+        :
+        <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} host={HOST} />}
       </div>
     );
   };

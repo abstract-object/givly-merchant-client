@@ -10,7 +10,6 @@ class Product extends Component {
           <h4>{product.name}</h4>
         </header>
         <footer>
-          <p>Cart:</p>
           <button onClick={this.handleChangeCart}>+</button>
           <span> Quantity </span>
           <button onClick={this.handleChangeCart}>-</button>
