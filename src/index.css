@@ -21,8 +21,12 @@ img.givlyLogo {
 }
 #dashboard, #analytics, #logout {
   padding: 15px;
+  
 }
 
+a:active {
+  color: white;
+}
 
 .row {
   height: 100vh;
