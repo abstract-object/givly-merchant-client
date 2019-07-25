@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 
 class CartItem extends Component {
   handleChangePrice = event => {
@@ -15,7 +15,7 @@ class CartItem extends Component {
     return (
       <article className="cartItem">
         <header>
-          <img alt={cartItem.name} src={cartItem.image} />
+          <img alt={cartItem.name} src={cartItem.image}/>
           <h4>{cartItem.name}</h4>
           <span className="quantity">Quantity: {cartItem.quantity}</span>
         </header>
@@ -24,7 +24,7 @@ class CartItem extends Component {
           <button onClick={this.handleChangePrice}>+</button>
           <span> Price </span>
           <button onClick={this.handleChangePrice}>-</button>
-          <br />
+          <br/>
           <p>Row price: {rowPrice}</p>
         </footer>
       </article>

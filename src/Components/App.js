@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Switch, Route } from "react-router-dom";
+import React, {Component} from "react";
+import {Switch, Route} from "react-router-dom";
 
-import '../App.css';
-import Dashboard from './Dashboard/Dashboard.js';
-import Login from './Auth/Login.js';
-import Analytics from './Analytics/Analytics.js';
+import "../App.css";
+import Dashboard from "./Dashboard/Dashboard.js";
+import Login from "./Auth/Login.js";
+import Analytics from "./Analytics/Analytics.js";
 
 const HOST = "http://35.203.20.184";
 
@@ -23,16 +23,16 @@ class App extends Component {
 
   handleChange = event => {
     event.preventDefault();
-    const { name, value } = event.target;
+    const {name, value} = event.target;
     this.setState(prevState => {
       const merchant = Object.assign({}, prevState.merchant);
       merchant[name] = value;
       
-      return { merchant };
+      return {merchant};
     });
   };
 
-  login = (data) => {
+  login = data => {
     localStorage.setItem('merchant_id', data.merchantUuid);
     localStorage.setItem('merchant_crypto_id', data.merchantCryptoId);
     localStorage.setItem('merchant_email', data.storeEmail);
@@ -44,7 +44,7 @@ class App extends Component {
       merchant.cryptoId = data.merchantCryptoId;
       merchant.storeEmail = data.storeEmail;
       merchant.storeName = data.storeName;
-      return { merchant };
+      return {merchant};
     });
   };
 
@@ -67,12 +67,12 @@ class App extends Component {
         {(localStorage.merchant_id && this.state.merchant.id) ? 
         <Switch>
           <Route exact path='/' 
-          render={(props) => <Dashboard {...props} merchant={this.state.merchant} logout={this.logout} host={HOST} />}
+          render={(props) => <Dashboard {...props} merchant={this.state.merchant} logout={this.logout} host={HOST}/>}
           />
-          <Route path='/analytics' component={Analytics} />
+          <Route path='/analytics' component={Analytics}/>
         </Switch>
         :
-        <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} host={HOST} />}
+        <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} host={HOST}/>}
       </div>
     );
   };

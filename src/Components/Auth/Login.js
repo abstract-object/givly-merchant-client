@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 
 class Login extends Component {
   constructor(props) {
@@ -12,43 +12,43 @@ class Login extends Component {
     event.preventDefault();
 
     const options = {
-      method: 'post',
+      method: "post",
       headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
       },
       body: `storeName=${this.props.merchant.storeName}&storeEmail=${this.props.merchant.storeEmail}`,
-      mode:'cors'
-    }
+      mode:"cors"
+    };
 
     fetch(`${this.props.host}/merchant/login`, options)
-      .then((response) => {
-        response.json()
-        .then((data) => {
-          this.setState({error: null});
-          this.props.login(data);
-        })
-        .catch((err) => {this.setState({error: err})});
+    .then((response) => {
+      response.json()
+      .then(data => {
+        this.setState({error: null});
+        this.props.login(data);
       })
-      .catch(err => console.log(err));
+      .catch(err => {this.setState({error: err})});
+    })
+    .catch(err => console.log(err));
   };
 
   render() {
     return (
       <div className="signInForm">
-        {this.state.error && <p className="error">Incorrect email or store name</p>}
+        {this.state.error && <p className="error">Incorrect login information.</p>}
         <form className="signIn">
           <div>
-            <input className="storeEmail" name="storeEmail" placeholder="Email" type="email" value={this.props.merchant.storeEmail || ""} onChange={this.props.handleChange} />
+            <input className="storeEmail" name="storeEmail" placeholder="Email" type="email" value={this.props.merchant.storeEmail || ""} onChange={this.props.handleChange}/>
           </div>
           <div>
-            <input className="storeName" name="storeName" placeholder="Store name" value={this.props.merchant.storeName || ""} onChange={this.props.handleChange} />
+            <input className="storeName" name="storeName" placeholder="Store name" value={this.props.merchant.storeName || ""} onChange={this.props.handleChange}/>
           </div>
           <br />
           <div>
-            <input type="submit" onClick={this.handleSubmit} className="signInButton" value="Log In" />
+            <input type="submit" onClick={this.handleSubmit} className="signInButton" value="Log In"/>
           </div>
         </form>
-        <br />
+        <br/>
       </div>
     );
   }

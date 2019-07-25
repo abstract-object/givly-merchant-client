@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 
 class Product extends Component {
   render() {
@@ -6,7 +6,7 @@ class Product extends Component {
     return (
       <article className="product">
         <header>
-          <img alt={product.name} src={product.image} />
+          <img alt={product.name} src={product.image}/>
           <h4>{product.name}</h4>
         </header>
         <footer>

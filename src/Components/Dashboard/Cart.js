@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 
-import CartItem from './CartItem.js';
+import CartItem from "./CartItem.js";
 
 class Cart extends Component {
   constructor(props) {
@@ -25,9 +25,9 @@ class Cart extends Component {
   render() {
     return (
       <section className="cart">
-        <input className="recipientId" name="recipientId" placeholder="Recipient ID" value={this.state.recipientId || ""} onChange={this.handleChange} />
+        <input className="recipientId" name="recipientId" placeholder="Recipient ID" value={this.state.recipientId || ""} onChange={this.handleChange}/>
         {Object.values(this.props.cart).map(cartItem => {
-          return <CartItem key={cartItem.id} cartItem={cartItem} changePrice={this.props.changePrice} />
+          return <CartItem key={cartItem.id} cartItem={cartItem} changePrice={this.props.changePrice}/>
         })}
         <p>Total: {this.props.totalPrice}</p>
         <button className="checkout" onClick={this.handleClick}>Checkout</button>

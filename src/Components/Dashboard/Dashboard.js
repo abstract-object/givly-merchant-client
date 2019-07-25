@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, {Component} from "react";
+import {Container, Row, Col} from "react-bootstrap";
 
 
-import Header from '../Header.js';
-import SearchBar from './SearchBar.js';
-import ProductList from './ProductList.js';
-import Cart from './Cart.js';
-import Footer from '../Footer.js';
+import Header from "../Header.js";
+import SearchBar from "./SearchBar.js";
+import ProductList from "./ProductList.js";
+import Cart from "./Cart.js";
+import Footer from "../Footer.js";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -60,7 +60,7 @@ class Dashboard extends Component {
 
       totalPrice = this.updateTotalPrice(cart);
       
-      return { cart, status, totalPrice };
+      return {cart, status, totalPrice};
     });
   };
 
@@ -77,7 +77,7 @@ class Dashboard extends Component {
 
       cart = {};
 
-      return { cart, totalPrice };
+      return {cart, totalPrice};
     });
   };
 
@@ -98,31 +98,31 @@ class Dashboard extends Component {
 
       totalPrice = this.updateTotalPrice(cart);
       
-      return { cart, totalPrice };
+      return {cart, totalPrice};
     });
   };
 
   addTransaction = recipientId => {
     if (!recipientId) {
-      this.setState({status: ["error", `Failed to add transaction. Invalid recipient id.`]});
+      this.setState({status: ["error", "Failed to add transaction. Invalid recipient id."]});
       return null;
     }
 
     this.setState({loading: true});
 
     const options = {
-      method: 'post',
+      method: "post",
       headers: {
-        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
       },
       body: `recipientCryptoId=${recipientId}`,
-      mode: 'cors'
-    }
+      mode: "cors"
+    };
 
     fetch(`${this.props.host}/merchant/verifyAccount`, options)
     .then((response) => {
       response.json()
-      .then((data) => {
+      .then(data => {
         this.setState({recipientBalance: data.balance});
         if (this.state.totalPrice > 0 && this.state.recipientBalance >= this.state.totalPrice) {
           const transaction = {
@@ -143,26 +143,26 @@ class Dashboard extends Component {
           options.body = `transaction=${JSON.stringify(transaction)}`;
 
           fetch(`${this.props.host}/transaction/submitTx`, options)
-          .then((response) => {
+          .then(response => {
             console.log(response)
             response.json()
-            .then((data) => {
+            .then(data => {
               console.log(data)
               this.clearCart();
               this.setState({loading: false, status: ["cart", "Thank you, order successfully processed."]});
             })
-            .catch((err) => {this.setState({loading: false, status: ["error", "Failed to add transaction."]})});
+            .catch(err => {this.setState({loading: false, status: ["error", "Failed to add transaction."]})});
           });
         } else {
           this.setState({loading: false, status: ["error", `Failed to add transaction. Recipient's current balance is below the total price of these items.`]});
         }
       })
-      .catch((err) => {this.setState({loading: false, status: ["error", "Failed to get recipient balance."]})});
+      .catch(err => {this.setState({loading: false, status: ["error", "Failed to get recipient balance."]})});
     })
     .catch(err => console.log(err));
   };
 
-  updateTotalPrice = (cart) => {
+  updateTotalPrice = cart => {
     return Object.values(cart).reduce((total, item) => {
       return total + (item.quantity * item.price);
     }, 0);
@@ -171,22 +171,22 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
-        <Header merchant={this.props.merchant} logout={this.props.logout} />
+        <Header merchant={this.props.merchant} logout={this.props.logout}/>
           <Container>
             <Row>
               <Col>
-                <SearchBar />
-                <ProductList products={this.state.products} changeCart={this.changeCart} />
+                <SearchBar/>
+                <ProductList products={this.state.products} changeCart={this.changeCart}/>
               </Col>
               <Col>
-                {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} />}
+                {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction}/>}
                 {this.state.loading && <h3>Doing crypto magic...</h3>}
                 {(this.state.status && this.state.status[0] === "cart") && <p>{this.state.status[1]}</p>}
                 {(this.state.status && this.state.status[0] === "error") && <p>{this.state.status[1]}</p>}
               </Col>
             </Row>
           </Container>
-        <Footer />
+        <Footer/>
       </div>
     );
   };
