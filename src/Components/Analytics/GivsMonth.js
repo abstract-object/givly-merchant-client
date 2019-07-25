@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import {Bar} from 'react-chartjs-2';
 
-class GivsWeek extends Component {
+class GivsMonth extends Component {
     render () {
         return (
-            <div className='chart'>
+            <div className='charts'>
                 < Bar 
-                    data={this.props.givsWeekData}
-                    width={50}
-                    height={400}
+                    data={this.props.givsMonthData}
                     options={{ 
                         scales: {
                             yAxes: [{
@@ -24,4 +22,4 @@ class GivsWeek extends Component {
     }
 }
 
-export default GivsWeek;
+export default GivsMonth;

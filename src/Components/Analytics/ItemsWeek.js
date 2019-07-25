@@ -4,8 +4,8 @@ import {Doughnut} from 'react-chartjs-2';
 class ItemsWeek extends Component {
     render () {
         return (
-            <div id='itemsChart'>
-                < Doughnut 
+            <div className='chart'>
+                <Doughnut 
                     data={this.props.itemData}
                     width={100}
                     height={500}
