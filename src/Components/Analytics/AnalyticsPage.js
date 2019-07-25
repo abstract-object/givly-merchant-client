@@ -5,6 +5,7 @@ import Footer from '../Footer.js';
 import GivsWeek from './GivsWeek.js';
 import GivsMonth from './GivsMonth.js';
 import ItemsWeek from './ItemsWeek.js';
+import RecipientsWeek from './RecipientsWeek.js';
 
 
 class AnalyticsPage extends Component {
@@ -48,9 +49,33 @@ class AnalyticsPage extends Component {
                         '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
                 datasets: 
                 [{
-                    label:'GIVs this week',
-                    data:[3,7,2,8,9,10,3,7,2,8,9,10,3,7,2,8,9,10,3,7,2,8,9,10,3,7,2,8,9,10,3,7,2,8,9,10],
+                    label:'GIVs this month',
+                    data:[3,7,2,8,9,10,3,7,2,10,3,7,2,8,9,10,3,7,2,8,9,10,3,8,9,7,2,8,9,10,3,7,2,8,9,10],
                     backgroundColor: [
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)',
+                        'rgba(75, 192, 192, 0.3)',
+                        'rgba(153, 102, 255, 0.3)',
+                        'rgba(153, 192, 192, 0.3)',
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)',
+                        'rgba(75, 192, 192, 0.3)',
+                        'rgba(153, 102, 255, 0.3)',
+                        'rgba(153, 192, 192, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)',
+                        'rgba(75, 192, 192, 0.3)',
+                        'rgba(153, 192, 192, 0.3)',
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)',
+                        'rgba(153, 192, 192, 0.3)',
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(75, 192, 192, 0.3)',
+                        'rgba(153, 102, 255, 0.3)',
+                        'rgba(153, 192, 192, 0.3)',
                         'rgba(255, 99, 132, 0.3)',
                         'rgba(54, 162, 235, 0.3)',
                         'rgba(255, 206, 86, 0.3)',
@@ -65,8 +90,23 @@ class AnalyticsPage extends Component {
                 labels: ['Banana', 'Pants', 'Coffee', 'Gloves', 'Kite'],
                 datasets: 
                 [{
-                    label:'GIVs this week',
-                    data:[3,7,2,8,2],
+                    data:[8,8,2,8,2],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.3)',
+                        'rgba(54, 162, 235, 0.3)',
+                        'rgba(255, 206, 86, 0.3)',
+                        'rgba(75, 192, 192, 0.3)',
+                        'rgba(153, 102, 255, 0.3)',
+                        'rgba(255, 159, 64, 0.3)'
+                    ],
+                }
+            ]},
+            recipientData: {
+                labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                datasets: 
+                [{
+                    label:'Unique recipients',
+                    data:[3,3,4,8,9,9,10],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.3)',
                         'rgba(54, 162, 235, 0.3)',
@@ -112,6 +152,7 @@ class AnalyticsPage extends Component {
                 </div>
                 <div id="item-chart">
                     <ItemsWeek itemData={this.state.itemData} />
+                    <RecipientsWeek recipientData={this.state.recipientData} />
                 </div>
                 <Footer />
                 

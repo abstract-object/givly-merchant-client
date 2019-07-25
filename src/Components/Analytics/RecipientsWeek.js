@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Bar} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 
-class GivsMonth extends Component {
+class RecipientsWeek extends Component {
     render () {
         return (
             <div className='chart'>
-                < Bar 
-                    data={this.props.givsMonthData}
+                <Line 
+                    data={this.props.recipientData}
                     width={50}
                     height={400}
                     options={{ 
@@ -24,4 +24,4 @@ class GivsMonth extends Component {
     }
 }
 
-export default GivsMonth;
+export default RecipientsWeek;

@@ -5,7 +5,8 @@ class GivsWeek extends Component {
     render () {
         return (
             <div className='chart'>
-                < Bar 
+                < Bar
+                    
                     data={this.props.givsWeekData}
                     width={50}
                     height={400}
