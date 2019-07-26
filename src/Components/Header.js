@@ -6,6 +6,7 @@ class Header extends Component {
   render() {
     return (
       <nav id="nav">
+        
         <img src={logo} width="113" height="42" className="givlyLogo" alt="givly"/>
         <span id='dashboard'> <Link to="/">{this.props.merchant.storeName} Dashboard</Link></span> 
         <span id='analytics'> <Link to="/analytics">Analytics</Link></span> 

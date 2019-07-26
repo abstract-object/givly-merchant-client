@@ -5,7 +5,7 @@ class ItemsWeek extends Component {
     render () {
         return (
             <div className='chart'>
-                < Doughnut 
+                <Doughnut 
                     data={this.props.itemData}
                     width={100}
                     height={500}
@@ -14,8 +14,6 @@ class ItemsWeek extends Component {
                     }}
                 />
             </div>
-            
-            
         )
     }
 }
