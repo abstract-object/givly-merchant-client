@@ -6,7 +6,7 @@ import GivsWeek from './GivsWeek.js';
 import GivsMonth from './GivsMonth.js';
 import ItemsWeek from './ItemsWeek.js';
 import RecipientsWeek from './RecipientsWeek.js';
-const cart = "/shopping-cart.png"
+const cart = "/cart.png"
 
 
 class AnalyticsPage extends Component {
@@ -34,7 +34,6 @@ class AnalyticsPage extends Component {
                 labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
                 datasets: 
                 [{
-                    label:'GIVs this week',
                     data:[3,7,2,8,9,10],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.3)',
@@ -53,7 +52,6 @@ class AnalyticsPage extends Component {
                         '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'],
                 datasets: 
                 [{
-                    label:'GIVs this month',
                     data:[3,7,2,8,9,10,3,7,2,10,3,7,2,8,9,10,3,7,2,8,9,10,3,8,9,7,2,8,9,10,3,7,2,8,9,10],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.3)',
@@ -110,7 +108,7 @@ class AnalyticsPage extends Component {
                 datasets: 
                 [{
                     label:'Unique recipients',
-                    data:[3,3,4,8,9,9,10],
+                    data:[3,3,7,10],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.3)',
                         'rgba(54, 162, 235, 0.3)',
@@ -155,15 +153,24 @@ class AnalyticsPage extends Component {
         return (
             <div>
                 <Header merchant={this.props.merchant} logout={this.props.logout} />
-                <div id="givs-charts">
-                    
-                    <span className="analytics-label"> <a href='#' onClick={this.toggle.bind(this,1)}> This Week </a> </span>
-                    <span className="analytics-label"> <a href='#' onClick={this.toggle.bind(this,2)}> This Month </a> </span>
-                    { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
-                    <img src={cart} alt="cart"/>
+                <div id='givs-labels'>
+                    <div id='givs-heading'>
+                        <span > Givs </span>
+                    </div>
+                    <span className="time-setting"> <a href='#' onClick={this.toggle.bind(this,1)}> Week </a> </span>
+                    <span className="time-setting"> <a href='#' onClick={this.toggle.bind(this,2)}> Month </a> </span>
                 </div>
 
-                <div id="item-chart">
+                <div id="givs-charts">
+                    { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
+                    <img id='cartimg' src={cart} alt="cart"/>
+                </div>
+
+                <div id='itm-rx-labels'>
+                    <span className='itm-rx-label1'> Most Popular </span>
+                    <span className='itm-rx-label1'> Week Month </span>
+                </div>
+                <div id="itm-rx-charts">
                     <ItemsWeek itemData={this.state.itemData} />
                     <RecipientsWeek recipientData={this.state.recipientData} />
                 </div>

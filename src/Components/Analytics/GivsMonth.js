@@ -10,6 +10,7 @@ class GivsMonth extends Component {
                     width={50}
                     height={400}
                     options={{ 
+                        legend: false,
                         scales: {
                             yAxes: [{
                                 ticks: {

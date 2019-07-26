@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Open Sans;
+  font-family: OpenSans;
 }
 
 /* Navigation */
@@ -17,6 +17,7 @@ img.givlyLogo {
   height: 120px;
   color: #F2F6F5;
   width: 100%;
+
 }
 
 #dashboard, #analytics, #logout {
@@ -70,7 +71,6 @@ a:visited, a:active {
 
 /* Analytics */
 
-
 div .chart {
   display:flex;
   width: 60%;
@@ -80,11 +80,50 @@ div .chart {
   margin: 10px;
 }
 
-.analytics-label {
-  padding:30px 20px; 
+#givs-labels {
+  display: flex;
+  padding: 0 50px;
+  text-align: end;
+  font-size: 1.2em;
+  margin: 5px;
+}
+
+#givs-heading {
+  padding-right: 550px;
+}
+
+.time-setting{
+  padding:30px; 
   width: 750px;
   height: 65px;
-  font-family: OpenSans;
-  margin: auto;
-  
+  flex:.4;
+}
+
+#givs-charts {
+  display: flex;
+  margin: 15px;
+}
+
+#cartimg { 
+  min-width: 300px;
+  width: 30%;
+  height: 80%;
+  padding-top:40px;
+  filter:opacity(.5);
+  align-self:center;
+  /* transform: scaleX(-1); */
+}
+
+#itm-rx-labels {
+  padding: 20px;
+}
+
+.itm-rx-label {
+  margin: 10px 20px;
+  padding: 5px 50px;
+}
+
+#itm-rx-charts {
+  display: flex;
+  margin: 10px 20px 50px 20px;
 }
