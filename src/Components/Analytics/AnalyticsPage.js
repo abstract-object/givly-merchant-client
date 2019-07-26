@@ -6,6 +6,7 @@ import GivsWeek from './GivsWeek.js';
 import GivsMonth from './GivsMonth.js';
 import ItemsWeek from './ItemsWeek.js';
 import RecipientsWeek from './RecipientsWeek.js';
+const cart = "/shopping-cart.png"
 
 
 class AnalyticsPage extends Component {
@@ -17,7 +18,7 @@ class AnalyticsPage extends Component {
             givsMonthData:{},
             itemData:{},
             recipientData:{},
-            current: 0,
+            current: 1,
             error: null
         }
     }
@@ -155,9 +156,11 @@ class AnalyticsPage extends Component {
             <div>
                 <Header merchant={this.props.merchant} logout={this.props.logout} />
                 <div id="givs-charts">
-                    <a href='#' onClick={this.toggle.bind(this,1)}> This Week </a>
-                    <a href='#' onClick={this.toggle.bind(this,2)}> This Month </a> 
+                    
+                    <span className="analytics-label"> <a href='#' onClick={this.toggle.bind(this,1)}> This Week </a> </span>
+                    <span className="analytics-label"> <a href='#' onClick={this.toggle.bind(this,2)}> This Month </a> </span>
                     { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
+                    <img src={cart} alt="cart"/>
                 </div>
 
                 <div id="item-chart">
