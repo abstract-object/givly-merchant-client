@@ -25,7 +25,7 @@ class AnalyticsPage extends Component {
 
 componentWillMount(){
 this.charts();
-console.log(this.getTransactions());
+this.getTransactions();
 }
 
 charts(){
