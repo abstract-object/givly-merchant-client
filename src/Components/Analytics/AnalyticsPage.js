@@ -10,17 +10,17 @@ const cart = "/cart.png"
 
 
 class AnalyticsPage extends Component {
-constructor(props) {
-super(props);
+  constructor(props) {
+  super(props);
 
-this.state = {
+  this.state = {
     givsWeekData:{},
     givsMonthData:{},
     itemData:{},
     recipientData:{},
     current: 1,
     error: null
-}
+  }
 }
 
 componentWillMount(){
@@ -47,12 +47,17 @@ this.setState({
         }
     ]},
     givsMonthData :{
-        labels: [ '2', '3', '4', '5', '6', '7', '8', '9', '10', 
+        labels: [ '3', '4', '5', '6', '7', '8', '9', '10', 
                 '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
                 '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '1'],
         datasets: 
         [{
-            data:[3,7,2,8,9,10,3,7,2,10,3,7,2,8,9,10,3,7,2,8,9,10,3,8,9,7,2,8,9,10,3,7,2,8,9,10],
+            data:[0,0,0,4,5,
+              3,7,2,10,3,
+              7,2,8,9,10,
+              3,7,2,8,9,
+              10,3,8,9,7,
+              3,7,2,1,0],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.3)',
                 'rgba(54, 162, 235, 0.3)',
@@ -131,12 +136,13 @@ return time;
 
 addToThursday = (arr) => {
 arr.forEach( transaction => {
-    if ( transaction.time === 4 ) {
+    if ( transaction.time === 5 ) {
         this.setState(prevState => {
             let givsWeekData = Object.assign({}, prevState.givsWeekData);
             givsWeekData.datasets[0].data[6] += transaction.givs;
-
-            return {givsWeekData};
+            let givsMonthData = Object.assign({}, prevState.givsMonthData);
+            givsMonthData.datasets[0].data[29] += transaction.givs;
+            return {givsWeekData, givsMonthData};
         })
     }
 }
