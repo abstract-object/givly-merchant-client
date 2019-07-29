@@ -41,11 +41,12 @@ class Dashboard extends Component {
     this.setState(prevState => {
       const products = Object.assign({}, prevState.products);
 
-      if (!keyword) {
-        products.forEach(product => product.hide = false);
-      } else {
+        for (let product in products) {
+          products[product].hide = false;
+        }
+        if (keyword) {
         const hiddenProducts = Object.values(products).filter(product => !product.name.includes(keyword));
-
+        
         hiddenProducts.forEach(product => {
           products[product.id].hide = true;
         });
@@ -191,7 +192,7 @@ class Dashboard extends Component {
     return (
       <div>
         <Header merchant={this.props.merchant} logout={this.props.logout}/>
-          <SearchBar/>
+          <SearchBar search={this.searchFilter}/>
           <main>
             <section id="products-column">
               <ProductList products={this.state.products} changeCart={this.changeCart}/>

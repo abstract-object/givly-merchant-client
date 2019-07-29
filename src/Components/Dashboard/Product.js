@@ -5,7 +5,7 @@ class Product extends Component {
     const product = this.props.product;
     return (
       this.props.hideItem || 
-      (<article className="product" data-product-name={this.props.product.name}>
+      (<article className="product">
       <header>
         <img alt={product.name} src={product.image}/>
       </header>

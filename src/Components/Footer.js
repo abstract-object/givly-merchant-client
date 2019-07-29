@@ -6,7 +6,7 @@ class Footer extends Component {
       <footer id="footer">
         <div>
           <span>
-              <img class="logo" src="/LandingPage/assets/givly@3x.png" alt="Givly"/>
+              <img className="logo" src="/LandingPage/assets/givly@3x.png" alt="Givly"/>
           </span>
           <span>
             <h4>About</h4>
