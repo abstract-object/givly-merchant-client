@@ -7,7 +7,7 @@ class ProductList extends Component {
     return (
       <section className="products">
         {Object.values(this.props.products).map(product => {
-          return <Product key={product.id} product={product} changeCart={this.props.changeCart}/>
+          return <Product key={product.id} product={product} changeCart={this.props.changeCart} hideItem={product.hide}/>
         })}
       </section>
     );

@@ -4,7 +4,7 @@ class SearchBar extends Component {
   render() {
     return (
       <article id="search">
-        <input className="searchBar" placeholder="Search" onKeyDown={this.search}/>
+        <input className="searchBar" placeholder="Search Item" onKeyDown={this.search}/>
       </article>
     );
   };

@@ -113,9 +113,13 @@ main {
   width: 80%;
 }
 
-.searchBar {
+input {
   /*  */
-  height: 50px;
+  height: 2rem;
+}
+
+.searchBar {
+  width: 100vw;
 }
 
 .product, .cartItem {
@@ -126,12 +130,20 @@ main {
   font-size: 1rem;
 }
 
+.cartItem {
+  font-size: 0.75rem;
+}
+
 article.product, article.cartItem {
   justify-content: flex-start;
 }
 
-.product h5, .cart h5 {
+.product h5 {
   font-size: 1.5rem;
+}
+
+.cart h5 {
+  font-size: 1rem;
 }
 
 .product footer, .cartItem footer {
@@ -147,7 +159,7 @@ article.product, article.cartItem {
 }
 
 .cartItem img {
-  width: 2rem;
+  width: 3rem;
   font-size: 1rem;
   margin-right: 1rem;
   height: auto;

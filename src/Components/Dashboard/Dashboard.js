@@ -18,14 +18,16 @@ class Dashboard extends Component {
           image: "/icons/bread-1.png",
           name: "Generic bread",
           price: 1,
-          quantity: 0
+          quantity: 0,
+          hide: false
         },
         2: {
           id: 2,
           image: "/icons/potatoes-2.png",
           name: "Generic potatoes",
           price: 1,
-          quantity: 0
+          quantity: 0,
+          hide: false
         }
       },
       totalPrice: 0,
@@ -33,6 +35,24 @@ class Dashboard extends Component {
       status: null,
       loading: false
     };
+  };
+
+  searchFilter = keyword => {
+    this.setState(prevState => {
+      const products = Object.assign({}, prevState.products);
+
+      if (!keyword) {
+        products.forEach(product => product.hide = false);
+      } else {
+        const hiddenProducts = Object.values(products).filter(product => !product.name.includes(keyword));
+
+        hiddenProducts.forEach(product => {
+          products[product.id].hide = true;
+        });
+      }
+
+      return {products};
+    });
   };
 
   changeCart = (id, add) => {
@@ -171,9 +191,9 @@ class Dashboard extends Component {
     return (
       <div>
         <Header merchant={this.props.merchant} logout={this.props.logout}/>
+          <SearchBar/>
           <main>
             <section id="products-column">
-              <SearchBar/>
               <ProductList products={this.state.products} changeCart={this.changeCart}/>
             </section>
             <section id="cart-column">
