@@ -14,7 +14,7 @@ class GivsMonth extends Component {
             scales: {
               yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                  beginAtZero:true
                 }
               }]},
             maintainAspectRatio:false
