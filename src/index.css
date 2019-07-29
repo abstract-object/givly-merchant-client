@@ -51,6 +51,7 @@ button {
   font-size: 1rem;
   color: #ffffff;
   border: 0px solid transparent;
+  padding:8px 24px;
 }
 
 /* Navigation */

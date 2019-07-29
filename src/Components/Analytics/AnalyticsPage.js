@@ -26,8 +26,8 @@ class AnalyticsPage extends Component {
   }
 
   componentWillMount(){
-  this.charts();
-  this.getTransactions();
+    this.charts();
+    this.getTransactions();
   }
 
   charts(){
@@ -38,13 +38,13 @@ class AnalyticsPage extends Component {
       [{
         data:[3,7,2,1,0,0,0],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.3)',
-          'rgba(54, 162, 235, 0.3)',
-          'rgba(255, 206, 86, 0.3)',
-          'rgba(75, 192, 192, 0.3)',
-          'rgba(153, 102, 255, 0.3)',
-          'rgba(153, 192, 192, 0.3)',
-          'rgba(255, 159, 64, 0.3)'
+          'rgba(120, 82, 155, 0.3)',
+          'rgba(120, 82, 155, 0.3)',
+          'rgba(120, 82, 155, 0.3)',
+          'rgba(120, 82, 155, 0.3)',
+          'rgba(120, 82, 155, 0.3)',
+          'rgba(120, 82, 155, 0.3)',
+          'rgba(120, 82, 155, 0.3)',
         ],
       }
     ]},
@@ -61,37 +61,35 @@ class AnalyticsPage extends Component {
           10,3,8,9,7,
           3,7,2,1,0],
         backgroundColor: [
-          'rgba(255, 99, 132, 0.3)',
           'rgba(54, 162, 235, 0.3)',
-          'rgba(255, 206, 86, 0.3)',
-          'rgba(75, 192, 192, 0.3)',
-          'rgba(153, 102, 255, 0.3)',
-          'rgba(153, 192, 192, 0.3)',
-          'rgba(255, 99, 132, 0.3)',
           'rgba(54, 162, 235, 0.3)',
-          'rgba(255, 206, 86, 0.3)',
-          'rgba(75, 192, 192, 0.3)',
-          'rgba(153, 102, 255, 0.3)',
-          'rgba(153, 192, 192, 0.3)',
           'rgba(54, 162, 235, 0.3)',
-          'rgba(255, 206, 86, 0.3)',
-          'rgba(75, 192, 192, 0.3)',
-          'rgba(153, 192, 192, 0.3)',
-          'rgba(255, 99, 132, 0.3)',
           'rgba(54, 162, 235, 0.3)',
-          'rgba(255, 206, 86, 0.3)',
-          'rgba(153, 192, 192, 0.3)',
-          'rgba(255, 99, 132, 0.3)',
-          'rgba(75, 192, 192, 0.3)',
-          'rgba(153, 102, 255, 0.3)',
-          'rgba(153, 192, 192, 0.3)',
-          'rgba(255, 99, 132, 0.3)',
           'rgba(54, 162, 235, 0.3)',
-          'rgba(255, 206, 86, 0.3)',
-          'rgba(75, 192, 192, 0.3)',
-          'rgba(153, 102, 255, 0.3)',
-          'rgba(153, 192, 192, 0.3)',
-          'rgba(255, 159, 64, 0.3)'
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(54, 162, 235, 0.3)'
           ],
       }
     ]},
@@ -117,7 +115,7 @@ class AnalyticsPage extends Component {
           label:'Unique recipients',
           data:[1,2,3,5],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.3)'
+            'rgba(75, 192, 192, 0.3)'
           ],
         }
       ]},
@@ -135,8 +133,7 @@ class AnalyticsPage extends Component {
             1,1,1,1,1,
             1,1,1,1,1,
             1,2,3,5],
-          backgroundColor: [
-            'rgba(255, 206, 86, 0.3)'
+          backgroundColor: ['rgba(255, 206, 86, 0.3)'
             ],
         }
     ]}
@@ -151,15 +148,15 @@ class AnalyticsPage extends Component {
 
   addToThursday = (arr) => {
     arr.forEach( transaction => {
-        if ( transaction.time === 5 ) {
-            this.setState(prevState => {
-                let givsWeekData = Object.assign({}, prevState.givsWeekData);
-                givsWeekData.datasets[0].data[6] += transaction.givs;
-                let givsMonthData = Object.assign({}, prevState.givsMonthData);
-                givsMonthData.datasets[0].data[29] += transaction.givs;
-                return {givsWeekData, givsMonthData};
-            })
-        }
+      if ( transaction.time === 5 ) {
+        this.setState(prevState => {
+          let givsWeekData = Object.assign({}, prevState.givsWeekData);
+          givsWeekData.datasets[0].data[6] += transaction.givs;
+          let givsMonthData = Object.assign({}, prevState.givsMonthData);
+          givsMonthData.datasets[0].data[29] += transaction.givs;
+          return {givsWeekData, givsMonthData};
+        })
+      }
     })    
   }
 
@@ -206,9 +203,9 @@ class AnalyticsPage extends Component {
     <div>
       <Header merchant={this.props.merchant} logout={this.props.logout} />
       <div id='analytics-labels'>
-          <div id='givs-heading'>
-              <span > Givs </span>
-          </div>
+        <div id='givs-heading'>
+          <span> Givs </span>
+        </div>
           <span className="time-setting"> <button onClick={this.toggle.bind(this, 1, 'givs')}> Week </button> </span>
           <span className="time-setting"> <button onClick={this.toggle.bind(this, 2, 'givs')}> Month </button> </span>
       </div>
@@ -227,9 +224,8 @@ class AnalyticsPage extends Component {
       </div>
 
       <div id="item-charts">
-          <ItemsWeek itemData={this.state.itemData} />
-          { this.state.currentRecs === 1 ? <RecipientsWeek recipientWData={this.state.recipientWData} /> : <RecipientsMonth recipientMData={this.state.recipientMData} /> }
-
+        <ItemsWeek itemData={this.state.itemData} />
+        { this.state.currentRecs === 1 ? <RecipientsWeek recipientWData={this.state.recipientWData} /> : <RecipientsMonth recipientMData={this.state.recipientMData} /> }
       </div>
 
       
