@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Container, Row, Col} from "react-bootstrap";
 
 
 import Header from "../Header.js";
@@ -16,15 +15,15 @@ class Dashboard extends Component {
       products: {
         1: {
           id: 1,
-          image: "http://harboarts.com/shirtdesigner/jpg_design_exports/loaf-of-bread-vector-graphics_template_1434971128379T0A.jpg",
+          image: "/icons/bread-1.png",
           name: "Generic bread",
           price: 1,
           quantity: 0
         },
         2: {
           id: 2,
-          image: "",
-          name: "Generic pants",
+          image: "/icons/potatoes-2.png",
+          name: "Generic potatoes",
           price: 1,
           quantity: 0
         }
@@ -172,20 +171,18 @@ class Dashboard extends Component {
     return (
       <div>
         <Header merchant={this.props.merchant} logout={this.props.logout}/>
-          <Container>
-            <Row>
-              <Col>
-                <SearchBar/>
-                <ProductList products={this.state.products} changeCart={this.changeCart}/>
-              </Col>
-              <Col>
-                {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction}/>}
-                {this.state.loading && <h3>Doing crypto magic...</h3>}
-                {(this.state.status && this.state.status[0] === "cart") && <p>{this.state.status[1]}</p>}
-                {(this.state.status && this.state.status[0] === "error") && <p>{this.state.status[1]}</p>}
-              </Col>
-            </Row>
-          </Container>
+          <main>
+            <section id="products-column">
+              <SearchBar/>
+              <ProductList products={this.state.products} changeCart={this.changeCart}/>
+            </section>
+            <section id="cart-column">
+              {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction}/>}
+              {this.state.loading && <h3>Doing crypto magic...</h3>}
+              {(this.state.status && this.state.status[0] === "cart") && <p>{this.state.status[1]}</p>}
+              {(this.state.status && this.state.status[0] === "error") && <p>{this.state.status[1]}</p>}
+            </section>
+          </main>
         <Footer/>
       </div>
     );

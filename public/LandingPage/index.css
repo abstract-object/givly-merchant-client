@@ -9,15 +9,19 @@ header {
   display: flex;
   max-width: 80vw;
   font-size: 1.5rem;
+  padding-top: 2rem;
+  height: 8vw;
 }
 
 footer {
+  margin: auto;
   max-width: 80vw;
 }
 
 footer div {
   display: flex;
   justify-content: space-around;
+  padding-top: 4rem;
 }
 
 footer img {
@@ -27,7 +31,7 @@ footer img {
 
 nav {
   display: inline-flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -45,6 +49,7 @@ button {
   background-color: #00afcc;
   font-size: 1rem;
   color: #ffffff;
+  border: 0px solid transparent;
 }
 
 .logo {
@@ -142,3 +147,30 @@ input {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+#people {
+  width: 100%;
+}
+
+#people img {
+  width: 15vw;
+  height: auto;
+}
+
+.personrow {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.personrow2 {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.person {
+  width: 19vw;
+  display: flex;
+  flex-direction: column;
+} 

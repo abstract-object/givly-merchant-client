@@ -1,7 +1,56 @@
 body {
+  font-family: "Open Sans";
+  font-size: 1.5rem;
+  color: #464646;
+}
+
+.nav header {
+  margin: auto;
+  display: flex;
+  max-width: 80vw;
+  font-size: 1.5rem;
+  padding-top: 2rem;
+  height: 8vw;
+}
+
+#footer {
+  margin: auto;
+  max-width: 80vw;
+}
+
+#footer div {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 4rem;
+}
+
+#footer img {
+  width: auto;
+  height: 2vw;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #00afcc;
+}
+
+h4 {
   margin: 0;
-  padding: 0;
-  font-family: OpenSans;
+  margin-bottom: 2rem;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+button {
+  border-radius: 3rem;
+  background-color: #00afcc;
+  font-size: 1rem;
+  color: #ffffff;
+  border: 0px solid transparent;
 }
 
 /* Navigation */
@@ -12,12 +61,20 @@ img.givlyLogo {
   padding: 10px;
 }
 
-#nav {
+nav {
+  display: inline-flex;
+  justify-content: space-between;
   font-size: 1.4em;
   height: 120px;
   color: #F2F6F5;
   width: 100%;
+}
 
+#navlinks {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 80%;
+  line-height: 1.75;
 }
 
 #dashboard, #analytics, #logout {
@@ -33,12 +90,22 @@ a:visited, a:active {
   color: #464646;
 }
 
-
-.row {
-  height: 100vh;
+/* Dashboard */
+main {
+  display: flex;
+  justify-content: space-around;
   width: 100%;
 }
 
+#product-column {
+  display: flex;
+  flex-direction: column;
+}
+
+#cart-column {
+  display: flex;
+  flex-direction: column;
+}
 
 #search {
   /*  */
@@ -51,9 +118,39 @@ a:visited, a:active {
   height: 50px;
 }
 
-.product {
+.product, .cartItem {
+  display: flex;
+  max-width: 40vw;
   padding: 10px;
   margin: 5px;
+  font-size: 1rem;
+}
+
+article.product, article.cartItem {
+  justify-content: flex-start;
+}
+
+.product h5, .cart h5 {
+  font-size: 1.5rem;
+}
+
+.product footer, .cartItem footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.product img {
+  width: 4rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+  height: auto;
+}
+
+.cartItem img {
+  width: 2rem;
+  font-size: 1rem;
+  margin-right: 1rem;
+  height: auto;
 }
 
 .recipientId {

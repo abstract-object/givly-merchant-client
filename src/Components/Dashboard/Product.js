@@ -7,12 +7,14 @@ class Product extends Component {
       <article className="product">
         <header>
           <img alt={product.name} src={product.image}/>
-          <h4>{product.name}</h4>
         </header>
         <footer>
-          <button onClick={this.handleChangeCart}>+</button>
-          <span> Quantity </span>
-          <button onClick={this.handleChangeCart}>-</button>
+          <span><h5>{product.name}</h5></span>
+          <span>
+            <button onClick={this.handleChangeCart}>+</button>
+            <span> Quantity </span>
+            <button onClick={this.handleChangeCart}>-</button>
+          </span>
         </footer>
       </article>
     );

@@ -29,7 +29,7 @@ class Cart extends Component {
         {Object.values(this.props.cart).map(cartItem => {
           return <CartItem key={cartItem.id} cartItem={cartItem} changePrice={this.props.changePrice}/>
         })}
-        <p>Total: {this.props.totalPrice}</p>
+        <h5>Total: {this.props.totalPrice}</h5>
         <button className="checkout" onClick={this.handleClick}>Checkout</button>
       </section>
     );

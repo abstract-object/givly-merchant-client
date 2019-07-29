@@ -16,15 +16,17 @@ class CartItem extends Component {
       <article className="cartItem">
         <header>
           <img alt={cartItem.name} src={cartItem.image}/>
-          <h4>{cartItem.name}</h4>
-          <span className="quantity">Quantity: {cartItem.quantity}</span>
         </header>
         <footer>
+          <span><h5>{cartItem.name}</h5></span>
+          <span className="quantity">Quantity: {cartItem.quantity}</span>
           <p>Price per item: {cartItem.price}</p>
-          <button onClick={this.handleChangePrice}>+</button>
-          <span> Price </span>
-          <button onClick={this.handleChangePrice}>-</button>
-          <br/>
+          <span>
+            <button onClick={this.handleChangePrice}>+</button>
+            <span> Price </span>
+            <button onClick={this.handleChangePrice}>-</button>
+            <br/>
+          </span>
           <p>Row price: {rowPrice}</p>
         </footer>
       </article>
