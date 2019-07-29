@@ -177,7 +177,7 @@ div .chart {
   margin: 10px;
 }
 
-#givs-labels {
+#analytics-labels{
   display: flex;
   padding: 0 50px;
   text-align: end;
@@ -189,7 +189,7 @@ div .chart {
   padding-right: 550px;
 }
 
-.time-setting{
+.time-setting, .time2-setting{
   padding:30px; 
   width: 750px;
   height: 65px;
@@ -203,12 +203,11 @@ div .chart {
 
 #cartimg { 
   min-width: 300px;
-  width: 30%;
+  width: 25%;
   height: 80%;
   padding-top:40px;
   filter:opacity(.5);
   align-self:center;
-  /* transform: scaleX(-1); */
 }
 
 #itm-rx-labels {
@@ -220,7 +219,7 @@ div .chart {
   padding: 5px 50px;
 }
 
-#itm-rx-charts {
+#item-charts {
   display: flex;
   margin: 10px 20px 50px 20px;
 }
