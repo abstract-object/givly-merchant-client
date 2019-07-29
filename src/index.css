@@ -208,6 +208,12 @@ div .chart {
   height: 65px;
   flex:.4;
 }
+.time-setting, .time2-setting{
+  padding:30px; 
+  width: 750px;
+  height: 65px;
+  flex:.4;
+}
 
 #givs-charts {
   display: flex;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../Header.js';
+import Footer from '../Footer.js'
 
 import GivsWeek from './GivsWeek.js';
 import GivsMonth from './GivsMonth.js';
@@ -174,11 +175,10 @@ class AnalyticsPage extends Component {
     .then((response) => {
     response.json()
     .then(data => {
-        console.log(data)
-        this.addToThursday(data.transactionList.map(datum => {
-            return { time:new Date (this.epochDate(datum.createdAt.seconds)).getDay(), givs:datum.totalPrice }
-        }))
-        
+      console.log(data)
+      this.addToThursday(data.transactionList.map(datum => {
+        return { time:new Date (this.epochDate(datum.createdAt.seconds)).getDay(), givs:datum.totalPrice }
+      }))
     });
     })
     .catch(err => {this.setState({error: err})}
@@ -206,13 +206,25 @@ class AnalyticsPage extends Component {
         <div id='givs-heading'>
           <span> Givs </span>
         </div>
-          <span className="time-setting"> <button onClick={this.toggle.bind(this, 1, 'givs')}> Week </button> </span>
-          <span className="time-setting"> <button onClick={this.toggle.bind(this, 2, 'givs')}> Month </button> </span>
+        <p>
+          <span className="time-setting"> 
+            <button onClick={this.toggle.bind(this, 1, 'givs')}> Week </button> 
+          </span>
+          <span className="time-setting"> 
+            <button onClick={this.toggle.bind(this, 2, 'givs')}> Month </button> 
+          </span>
+        </p>
       </div>
 
       <div id="givs-charts">
-          { this.state.currentGivs === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
-          <img id='cartimg' src={cart} alt="cart"/>
+        { this.state.currentGivs === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
+        <span id='total-givs'>
+          { this.state.currentGivs === 1 
+          ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b,0)} this month`
+          : `${this.state.givsMonthData.datasets[0].data.reduce((a,b) => a + b, 0)} this month` }
+        </span>
+        <img id='cartimg' src={cart} alt="cart"/>
+        
       </div>
 
       <div id='analytics-labels'>
@@ -228,8 +240,8 @@ class AnalyticsPage extends Component {
         { this.state.currentRecs === 1 ? <RecipientsWeek recipientWData={this.state.recipientWData} /> : <RecipientsMonth recipientMData={this.state.recipientMData} /> }
       </div>
 
-      
-      
+      <Footer/>
+
     </div>
     );
   };
