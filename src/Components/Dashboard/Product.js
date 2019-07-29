@@ -16,6 +16,7 @@ class Product extends Component {
           <span> Quantity </span>
           <button onClick={this.handleChangeCart}>-</button>
         </span>
+        <p>Price: {product.price} Giv{product.price > 1 && "s"}</p>
       </footer>
     </article>)
     );

@@ -20,14 +20,14 @@ class CartItem extends Component {
         <footer>
           <span><h5>{cartItem.name}</h5></span>
           <span className="quantity">Quantity: {cartItem.quantity}</span>
-          <p>Price per item: {cartItem.price}</p>
+          {/* <p>Price per item: {cartItem.price}</p>
           <span>
             <button onClick={this.handleChangePrice}>+</button>
             <span> Price </span>
             <button onClick={this.handleChangePrice}>-</button>
             <br/>
-          </span>
-          <p>Row price: {rowPrice}</p>
+          </span> */}
+          <p>Price: {rowPrice} Giv{rowPrice > 1 && "s"}</p>
         </footer>
       </article>
     );

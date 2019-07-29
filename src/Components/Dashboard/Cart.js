@@ -25,12 +25,14 @@ class Cart extends Component {
   render() {
     return (
       <section className="cart">
+        <div className="cart-content">
         <input className="recipientId" name="recipientId" placeholder="Recipient ID" value={this.state.recipientId || ""} onChange={this.handleChange}/>
         {Object.values(this.props.cart).map(cartItem => {
           return <CartItem key={cartItem.id} cartItem={cartItem} changePrice={this.props.changePrice}/>
         })}
-        <h5>Total: {this.props.totalPrice}</h5>
+        <h5>Total: {this.props.totalPrice} Giv{this.props.totalPrice > 1 && "s"}</h5>
         <button className="checkout" onClick={this.handleClick}>Checkout</button>
+        </div>
       </section>
     );
   };

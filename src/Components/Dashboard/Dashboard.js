@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 
-
-import Header from "../Header.js";
 import SearchBar from "./SearchBar.js";
 import ProductList from "./ProductList.js";
 import Cart from "./Cart.js";
-import Footer from "../Footer.js";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -17,6 +14,7 @@ class Dashboard extends Component {
           id: 1,
           image: "/icons/bread-1.png",
           name: "Generic bread",
+          category: "Food",
           price: 1,
           quantity: 0,
           hide: false
@@ -25,6 +23,43 @@ class Dashboard extends Component {
           id: 2,
           image: "/icons/potatoes-2.png",
           name: "Generic potatoes",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        3: {
+          id: 3,
+          image: "/icons/grapes.png",
+          name: "Generic grapes",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        4: {
+          id: 4,
+          image: "/icons/milk.png",
+          name: "Generic milk",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        5: {
+          id: 5,
+          image: "/icons/pear.png",
+          name: "Generic pears",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        6: {
+          id: 6,
+          image: "/icons/water-1.png",
+          name: "Brand name water",
+          category: "Food",
           price: 1,
           quantity: 0,
           hide: false
@@ -190,8 +225,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
-        <Header merchant={this.props.merchant} logout={this.props.logout}/>
+      <div className="merchant-portal">
           <SearchBar search={this.searchFilter}/>
           <main>
             <section id="products-column">
@@ -200,11 +234,10 @@ class Dashboard extends Component {
             <section id="cart-column">
               {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction}/>}
               {this.state.loading && <h3>Doing crypto magic...</h3>}
-              {(this.state.status && this.state.status[0] === "cart") && <p>{this.state.status[1]}</p>}
-              {(this.state.status && this.state.status[0] === "error") && <p>{this.state.status[1]}</p>}
+              {(this.state.status && this.state.status[0] === "cart") && <span>{this.state.status[1]}</span>}
+              {(this.state.status && this.state.status[0] === "error") && <span>{this.state.status[1]}</span>}
             </section>
           </main>
-        <Footer/>
       </div>
     );
   };
