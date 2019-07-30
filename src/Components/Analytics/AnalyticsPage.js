@@ -7,6 +7,7 @@ import GivsMonth from './GivsMonth.js';
 import ItemsWeek from './ItemsWeek.js';
 import RecipientsWeek from './RecipientsWeek.js';
 import RecipientsMonth from './RecipientsMonth.js';
+import ItemsMonth from './ItemsMonth.js';
 const cart = "/cart.png"
 
 
@@ -20,8 +21,7 @@ class AnalyticsPage extends Component {
     itemData:{},
     recipientWData:{},
     recipientMData:{},
-    currentGivs:1,
-    currentRecs:1,
+    current:1,
     error: null
   }
   }
@@ -94,7 +94,7 @@ class AnalyticsPage extends Component {
           ],
       }
     ]},
-    itemData: {
+    itemWData: {
       labels: ['Banana', 'Pants', 'Coffee', 'Gloves', 'Kite'],
       datasets: 
       [{
@@ -109,33 +109,48 @@ class AnalyticsPage extends Component {
         ],
       }
     ]},
-      recipientWData: {
-        labels: ['Friday', 'Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday'],
-        datasets: 
-        [{
-          label:'Unique recipients',
-          data:[1,2,3,5],
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.3)'
-          ],
-        }
-      ]},
-      recipientMData: {
-        labels: [ '3', '4', '5', '6', '7', '8', '9', '10', 
-          '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-          '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '1'],
+    itemMData: {
+      labels: ['Banana', 'Pants', 'Coffee', 'Gloves', 'Kite'],
       datasets: 
-        [{
-          label:'Unique recipients',
-          data:[
-            0,0,0,0,0,
-            1,1,1,1,1,
-            1,1,1,1,1,
-            1,1,1,1,1,
-            1,1,1,1,1,
-            1,2,3,5],
-          backgroundColor: ['rgba(255, 206, 86, 0.3)'
-            ],
+      [{
+        data:[8,8,2,8,2],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.3)',
+          'rgba(54, 162, 235, 0.3)',
+          'rgba(255, 206, 86, 0.3)',
+          'rgba(75, 192, 192, 0.3)',
+          'rgba(153, 102, 255, 0.3)',
+          'rgba(255, 159, 64, 0.3)'
+        ],
+      }
+    ]},
+    recipientWData: {
+      labels: ['Friday', 'Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+      datasets: 
+      [{
+        label:'Unique recipients',
+        data:[1,2,3,5],
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.3)'
+        ],
+      }
+    ]},
+    recipientMData: {
+      labels: [ '3', '4', '5', '6', '7', '8', '9', '10', 
+        '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+        '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '1'],
+    datasets: 
+      [{
+        label:'Unique recipients',
+        data:[
+          0,0,0,0,0,
+          1,1,1,1,1,
+          1,1,1,1,1,
+          1,1,1,1,1,
+          1,1,1,1,1,
+          1,2,3,5],
+        backgroundColor: ['rgba(255, 206, 86, 0.3)'
+          ],
         }
     ]}
   })
@@ -186,16 +201,10 @@ class AnalyticsPage extends Component {
     .catch(err => console.log(err));
   };
 
-  toggle(index, category) {
-    if (category === 'givs') {
-      this.setState({
-        currentGivs:index
-      })
-    } else if (category === 'recips') {
-      this.setState({
-        currentRecs:index
-      })
-    }
+  toggle(index) {  
+    this.setState({
+      current:index
+    })
   }
 
   render() {
@@ -208,20 +217,20 @@ class AnalyticsPage extends Component {
         </div>
         <p>
           <span className="time-setting"> 
-            <button onClick={this.toggle.bind(this, 1, 'givs')}> Week </button> 
+            <button onClick={this.toggle.bind(this, 1)}> Week </button> 
           </span>
           <span className="time-setting"> 
-            <button onClick={this.toggle.bind(this, 2, 'givs')}> Month </button> 
+            <button onClick={this.toggle.bind(this, 2)}> Month </button> 
           </span>
         </p>
       </div>
 
       <div id="givs-charts">
-        { this.state.currentGivs === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
+        { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
         <span id='total-givs'>
-          { this.state.currentGivs === 1 
-          ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b,0)} this month`
-          : `${this.state.givsMonthData.datasets[0].data.reduce((a,b) => a + b, 0)} this month` }
+          { this.state.current === 1 
+          ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b, 0)}`
+          : `${this.state.givsMonthData.datasets[0].data.reduce((a,b) => a + b, 0)}` }
         </span>
         <img id='cartimg' src={cart} alt="cart"/>
         
@@ -229,15 +238,14 @@ class AnalyticsPage extends Component {
 
       <div id='analytics-labels'>
         <div id='givs-heading'>
-          <span > Most Popular </span>
+          <span> Most Popular Items </span>
+
         </div>
-        <span className="time2-setting"> <button onClick={this.toggle.bind(this, 1, 'recips')}> Week </button> </span>
-        <span className="time2-setting"> <button onClick={this.toggle.bind(this, 2, 'recips')}> Month </button> </span>
       </div>
 
       <div id="item-charts">
-        <ItemsWeek itemData={this.state.itemData} />
-        { this.state.currentRecs === 1 ? <RecipientsWeek recipientWData={this.state.recipientWData} /> : <RecipientsMonth recipientMData={this.state.recipientMData} /> }
+        { this.state.current === 1 ? <ItemsWeek itemWData={this.state.itemWData} /> : <ItemsMonth itemMData={this.state.itemMData} /> }
+        { this.state.current === 1 ? <RecipientsWeek recipientWData={this.state.recipientWData} /> : <RecipientsMonth recipientMData={this.state.recipientMData} /> }
       </div>
 
       <Footer/>

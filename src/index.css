@@ -177,6 +177,7 @@ article.product, article.cartItem {
   border: 1px solid #1C6EA4;
   padding: 10px;
   margin: 5px;
+  
 }
 
 /* Analytics */
@@ -223,10 +224,11 @@ div .chart {
 #cartimg { 
   min-width: 300px;
   width: 25%;
-  height: 80%;
-  padding-top:40px;
+  height: auto;
+  padding:40px;
   filter:opacity(.5);
   align-self:center;
+
 }
 
 #itm-rx-labels {
