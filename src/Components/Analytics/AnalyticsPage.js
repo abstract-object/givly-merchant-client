@@ -165,7 +165,7 @@ class AnalyticsPage extends Component {
 
   addToThursday = (arr) => {
     arr.forEach( transaction => {
-      if ( transaction.time === 5 ) {
+      if ( transaction.time === 3 || transaction.time === 4 ) {
         this.setState(prevState => {
           let givsWeekData = Object.assign({}, prevState.givsWeekData);
           givsWeekData.datasets[0].data[6] += transaction.givs;
@@ -211,7 +211,6 @@ class AnalyticsPage extends Component {
   render() {
     return (
     <div>
-      <Header merchant={this.props.merchant} logout={this.props.logout} />
       <div id='analytics-labels'>
         <span className="time-setting"> 
           <button onClick={this.toggle.bind(this, 1)}> Week </button> 
@@ -246,9 +245,6 @@ class AnalyticsPage extends Component {
         { this.state.current === 1 ? <ItemsWeek itemWData={this.state.itemWData} /> : <ItemsMonth itemMData={this.state.itemMData} /> }
         { this.state.current === 1 ? <RecipientsWeek recipientWData={this.state.recipientWData} /> : <RecipientsMonth recipientMData={this.state.recipientMData} /> }
       </div>
-
-      <Footer/>
-
     </div>
     );
   };

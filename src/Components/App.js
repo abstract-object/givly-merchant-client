@@ -66,7 +66,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header merchant={this.state.merchant} logout={this.state.logout}/>
+        <Header merchant={this.state.merchant} logout={this.logout}/>
         {(localStorage.merchant_id && this.state.merchant.id) ? 
         <Switch>
           <Route exact path='/' 

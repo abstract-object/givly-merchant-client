@@ -274,7 +274,7 @@ class Dashboard extends Component {
               <ProductList products={this.state.products} changeCart={this.changeCart}/>
             </section>
             <section id="cart-column">
-              {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} loading={this.state.loading} status={this.state.status} displayBalance={this.displayBalance} balance={this.state.recipientBalance} clearItem={this.clearItem}/>}
+              {(this.state.totalPrice > 0 || this.state.loading || this.state.status) && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} loading={this.state.loading} status={this.state.status} displayBalance={this.displayBalance} balance={this.state.recipientBalance} clearItem={this.clearItem}/>}
             </section>
           </main>
       </div>
