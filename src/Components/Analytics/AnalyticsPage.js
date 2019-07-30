@@ -18,7 +18,8 @@ class AnalyticsPage extends Component {
   this.state = {
     givsWeekData:{},
     givsMonthData:{},
-    itemData:{},
+    itemWData:{},
+    itemMData:{},
     recipientWData:{},
     recipientMData:{},
     current:1,
@@ -212,19 +213,17 @@ class AnalyticsPage extends Component {
     <div>
       <Header merchant={this.props.merchant} logout={this.props.logout} />
       <div id='analytics-labels'>
-        <div id='givs-heading'>
-          <span> Givs </span>
-        </div>
-        <p>
-          <span className="time-setting"> 
-            <button onClick={this.toggle.bind(this, 1)}> Week </button> 
-          </span>
-          <span className="time-setting"> 
-            <button onClick={this.toggle.bind(this, 2)}> Month </button> 
-          </span>
-        </p>
+        <span className="time-setting"> 
+          <button onClick={this.toggle.bind(this, 1)}> Week </button> 
+        </span>
+        <span className="time-setting"> 
+          <button onClick={this.toggle.bind(this, 2)}> Month </button> 
+        </span>
       </div>
 
+      <div id='givs-heading'>
+        <span> Givs </span>
+      </div>
       <div id="givs-charts">
         { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
         <span id='total-givs'>
@@ -239,7 +238,7 @@ class AnalyticsPage extends Component {
       <div id='analytics-labels'>
         <div id='givs-heading'>
           <span> Most Popular Items </span>
-
+          <span> Most Popular Items </span>
         </div>
       </div>
 
