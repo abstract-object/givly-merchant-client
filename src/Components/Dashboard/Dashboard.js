@@ -66,7 +66,7 @@ class Dashboard extends Component {
         }
       },
       totalPrice: 0,
-      recipientBalance: 0,
+      recipientBalance: null,
       status: null,
       loading: false
     };
@@ -119,6 +119,19 @@ class Dashboard extends Component {
     });
   };
 
+  clearItem = id => {
+    this.setState(prevState => {
+      const cart = Object.assign({}, prevState.cart);
+      let totalPrice = prevState.totalPrice;
+      
+      cart[id].quantity = 0;
+      delete cart[id];
+      totalPrice = this.updateTotalPrice(cart);
+
+      return {cart, totalPrice};
+    });
+  };
+
   clearCart = () => {
     this.setState(prevState => {
       let cart = Object.assign({}, prevState.cart);
@@ -155,6 +168,34 @@ class Dashboard extends Component {
       
       return {cart, totalPrice};
     });
+  };
+
+  displayBalance = recipientId => {
+    if (recipientId) {
+      const options = {
+        method: "post",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: `recipientCryptoId=${recipientId}`,
+        mode: "cors"
+      };
+  
+      fetch(`${this.props.host}/merchant/verifyAccount`, options)
+      .then((response) => {
+        console.log(response)
+        response.json()
+        .then(data => {
+          if (data.balance !== null && !isNaN(data.balance)) {
+            this.setState({recipientBalance: data.balance});
+          } else {
+            this.setState({recipientBalance: null});
+          }
+        })})
+      .catch(err => {this.setState({loading: false, status: ["error", "Failed to get recipient balance."]})});
+    } else {
+      this.setState({recipientBalance: null});
+    }
   };
 
   addTransaction = recipientId => {
@@ -205,6 +246,7 @@ class Dashboard extends Component {
               console.log(data)
               this.clearCart();
               this.setState({loading: false, status: ["cart", "Thank you, order successfully processed."]});
+              this.displayBalance(recipientId);
             })
             .catch(err => {this.setState({loading: false, status: ["error", "Failed to add transaction."]})});
           });
@@ -232,10 +274,7 @@ class Dashboard extends Component {
               <ProductList products={this.state.products} changeCart={this.changeCart}/>
             </section>
             <section id="cart-column">
-              {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction}/>}
-              {this.state.loading && <h3>Doing crypto magic...</h3>}
-              {(this.state.status && this.state.status[0] === "cart") && <span>{this.state.status[1]}</span>}
-              {(this.state.status && this.state.status[0] === "error") && <span>{this.state.status[1]}</span>}
+              {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} loading={this.state.loading} status={this.state.status} displayBalance={this.displayBalance} balance={this.state.recipientBalance} clearItem={this.clearItem}/>}
             </section>
           </main>
       </div>

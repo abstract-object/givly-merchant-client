@@ -193,6 +193,15 @@ article.product, article.cartItem {
   height: auto;
 }
 
+.cartItem button {
+  width: 2rem;
+  height: 2rem;
+  justify-self: flex-end;
+  align-self: center;
+  margin-right: 1rem;
+  padding: 0.2rem;
+}
+
 .cart-item {
   border: 1px solid #1C6EA4;
   padding: 10px;
