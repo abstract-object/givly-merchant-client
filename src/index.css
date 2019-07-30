@@ -1,6 +1,6 @@
 body {
   font-family: "Open Sans";
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #464646;
 }
 
@@ -57,10 +57,10 @@ button {
   font-size: 1.5rem;
   color: #ffffff;
   border: 0px solid transparent;
-  padding: 0.5rem;
+  padding:8px 24px;
 }
 
-/* Navigation */
+/* Header / Navigation */
 
 img.givlyLogo {
   width: 240px;
@@ -78,7 +78,6 @@ nav {
 }
 
 #navlinks {
-  display: inline-flex;
   justify-content: space-between;
   width: 80%;
   line-height: 1.75;
@@ -86,7 +85,7 @@ nav {
 
 #dashboard, #analytics, #logout {
   padding: 20px; 
-  font-size: .8em;
+  font-size: .7em;
   color: #464646;
 }
 #dashboard {
@@ -131,7 +130,6 @@ main {
 }
 
 input {
-  /*  */
   height: 2rem;
 }
 
@@ -206,6 +204,7 @@ article.product, article.cartItem {
   border: 1px solid #1C6EA4;
   padding: 10px;
   margin: 5px;
+  
 }
 
 /* Analytics */
@@ -221,8 +220,8 @@ div .chart {
 
 #analytics-labels{
   display: flex;
-  padding: 0 50px;
-  text-align: end;
+  /* padding: 0 50px; */
+  /* text-align: end; */
   font-size: 1.2em;
   margin: 5px;
 }
@@ -231,6 +230,12 @@ div .chart {
   padding-right: 550px;
 }
 
+.time-setting, .time2-setting{
+  padding:30px; 
+  width: 750px;
+  height: 65px;
+  flex:.4;
+}
 .time-setting, .time2-setting{
   padding:30px; 
   width: 750px;
@@ -246,10 +251,11 @@ div .chart {
 #cartimg { 
   min-width: 300px;
   width: 25%;
-  height: 80%;
-  padding-top:40px;
+  height: auto;
+  padding:40px;
   filter:opacity(.5);
   align-self:center;
+
 }
 
 #itm-rx-labels {
