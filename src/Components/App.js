@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import {Switch, Route} from "react-router-dom";
 
 import "../App.css";
+import Header from "./Header.js";
+import Footer from "./Footer.js";
 import Dashboard from "./Dashboard/Dashboard.js";
 import Login from "./Auth/Login.js";
 import AnalyticsPage from './Analytics/AnalyticsPage';
@@ -63,11 +65,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="Givly Merchant Portal">
+      <div>
+        <Header merchant={this.state.merchant} logout={this.state.logout}/>
         {(localStorage.merchant_id && this.state.merchant.id) ? 
         <Switch>
           <Route exact path='/' 
-          render={(props) => <Dashboard {...props} merchant={this.state.merchant} logout={this.logout} host={HOST}/>}
+          render={(props) => <Dashboard {...props} merchant={this.state.merchant} host={HOST}/>}
           />
           <Route path='/analytics' 
           render={(props) => <AnalyticsPage {...props} merchant={this.state.merchant} host={HOST}/>}
@@ -75,6 +78,7 @@ class App extends Component {
         </Switch>
         :
         <Login merchant={this.state.merchant} handleChange={this.handleChange} login={this.login} host={HOST}/>}
+        <Footer/>
       </div>
     );
   };

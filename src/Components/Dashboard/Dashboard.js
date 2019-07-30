@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 
-
-import Header from "../Header.js";
 import SearchBar from "./SearchBar.js";
 import ProductList from "./ProductList.js";
 import Cart from "./Cart.js";
-import Footer from "../Footer.js";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -17,6 +14,7 @@ class Dashboard extends Component {
           id: 1,
           image: "/icons/bread-1.png",
           name: "Generic bread",
+          category: "Food",
           price: 1,
           quantity: 0,
           hide: false
@@ -25,13 +23,50 @@ class Dashboard extends Component {
           id: 2,
           image: "/icons/potatoes-2.png",
           name: "Generic potatoes",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        3: {
+          id: 3,
+          image: "/icons/grapes.png",
+          name: "Generic grapes",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        4: {
+          id: 4,
+          image: "/icons/milk.png",
+          name: "Generic milk",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        5: {
+          id: 5,
+          image: "/icons/pear.png",
+          name: "Generic pears",
+          category: "Food",
+          price: 1,
+          quantity: 0,
+          hide: false
+        },
+        6: {
+          id: 6,
+          image: "/icons/water-1.png",
+          name: "Brand name water",
+          category: "Food",
           price: 1,
           quantity: 0,
           hide: false
         }
       },
       totalPrice: 0,
-      recipientBalance: 0,
+      recipientBalance: null,
       status: null,
       loading: false
     };
@@ -84,6 +119,19 @@ class Dashboard extends Component {
     });
   };
 
+  clearItem = id => {
+    this.setState(prevState => {
+      const cart = Object.assign({}, prevState.cart);
+      let totalPrice = prevState.totalPrice;
+      
+      cart[id].quantity = 0;
+      delete cart[id];
+      totalPrice = this.updateTotalPrice(cart);
+
+      return {cart, totalPrice};
+    });
+  };
+
   clearCart = () => {
     this.setState(prevState => {
       let cart = Object.assign({}, prevState.cart);
@@ -120,6 +168,34 @@ class Dashboard extends Component {
       
       return {cart, totalPrice};
     });
+  };
+
+  displayBalance = recipientId => {
+    if (recipientId) {
+      const options = {
+        method: "post",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+        },
+        body: `recipientCryptoId=${recipientId}`,
+        mode: "cors"
+      };
+  
+      fetch(`${this.props.host}/merchant/verifyAccount`, options)
+      .then((response) => {
+        console.log(response)
+        response.json()
+        .then(data => {
+          if (data.balance !== null && !isNaN(data.balance)) {
+            this.setState({recipientBalance: data.balance});
+          } else {
+            this.setState({recipientBalance: null});
+          }
+        })})
+      .catch(err => {this.setState({loading: false, status: ["error", "Failed to get recipient balance."]})});
+    } else {
+      this.setState({recipientBalance: null});
+    }
   };
 
   addTransaction = recipientId => {
@@ -170,6 +246,7 @@ class Dashboard extends Component {
               console.log(data)
               this.clearCart();
               this.setState({loading: false, status: ["cart", "Thank you, order successfully processed."]});
+              this.displayBalance(recipientId);
             })
             .catch(err => {this.setState({loading: false, status: ["error", "Failed to add transaction."]})});
           });
@@ -190,21 +267,16 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div>
-        <Header merchant={this.props.merchant} logout={this.props.logout}/>
+      <div className="merchant-portal">
           <SearchBar search={this.searchFilter}/>
           <main>
             <section id="products-column">
               <ProductList products={this.state.products} changeCart={this.changeCart}/>
             </section>
             <section id="cart-column">
-              {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction}/>}
-              {this.state.loading && <h3>Doing crypto magic...</h3>}
-              {(this.state.status && this.state.status[0] === "cart") && <p>{this.state.status[1]}</p>}
-              {(this.state.status && this.state.status[0] === "error") && <p>{this.state.status[1]}</p>}
+              {this.state.totalPrice > 0 && <Cart cart={this.state.cart} totalPrice={this.state.totalPrice} changePrice={this.changePrice} addTransaction={this.addTransaction} loading={this.state.loading} status={this.state.status} displayBalance={this.displayBalance} balance={this.state.recipientBalance} clearItem={this.clearItem}/>}
             </section>
           </main>
-        <Footer/>
       </div>
     );
   };

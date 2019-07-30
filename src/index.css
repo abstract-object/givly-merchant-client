@@ -4,6 +4,12 @@ body {
   color: #464646;
 }
 
+.merchant-portal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .nav header {
   margin: auto;
   display: flex;
@@ -48,7 +54,7 @@ ul {
 button {
   border-radius: 3rem;
   background-color: #00afcc;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #ffffff;
   border: 0px solid transparent;
   padding:8px 24px;
@@ -93,8 +99,9 @@ a:visited, a:active {
 /* Dashboard */
 main {
   display: flex;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-between;
+  width: 70vw;
+  margin: 0 auto;
 }
 
 #product-column {
@@ -105,31 +112,36 @@ main {
 #cart-column {
   display: flex;
   flex-direction: column;
+  position: sticky;
+  top: 3rem;
+  align-self: flex-start;
+  font-size: 1rem;
 }
 
 #search {
-  padding: 10px;
-  width: 80%;
+  /*  */
+  width: 70vw;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.searchBar {
+  width: 100%;
 }
 
 input {
   height: 2rem;
 }
 
-.searchBar {
-  width: 80vw;
-}
-
-.product, .cartItem {
+.product, .cart-content {
   display: flex;
   max-width: 40vw;
-  padding: 10px;
-  margin: 5px;
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .cartItem {
-  font-size: 0.75rem;
+  display: flex;
+  font-size: 1rem;
 }
 
 article.product, article.cartItem {
@@ -137,12 +149,28 @@ article.product, article.cartItem {
 }
 
 .product h5 {
-  font-size: 1.5rem;
+  font-style: bold;
+}
+
+.cart {
+  border: 3px solid #007082;
+  max-height: 90vh;
+  overflow: scroll;
+}
+
+.cart-content {
+  flex-direction: column;
+  margin: 1rem;
 }
 
 .cart h5 {
-  font-size: 1rem;
+  font-style: bold;
 }
+
+.cart button, .cart input {
+  margin: 0;
+  width: 80%;
+} 
 
 .product footer, .cartItem footer {
   display: flex;
@@ -163,11 +191,13 @@ article.product, article.cartItem {
   height: auto;
 }
 
-.recipientId {
-  padding: 10px;
-  width: 80%;
-  margin: 5px;
-
+.cartItem button {
+  width: 2rem;
+  height: 2rem;
+  justify-self: flex-end;
+  align-self: center;
+  margin-right: 1rem;
+  padding: 0.2rem;
 }
 
 .cart-item {
