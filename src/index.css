@@ -230,6 +230,14 @@ div .chart {
   padding-right: 550px;
 }
 
+#total-givs {
+  font-size: 5em;
+  color: #007082;
+  font-weight: 600;
+  align-self: center;
+  padding: 80px;
+}
+
 .time-setting, .time2-setting{
   padding:30px; 
   width: 750px;
@@ -246,6 +254,7 @@ div .chart {
 #givs-charts {
   display: flex;
   margin: 15px;
+  
 }
 
 #cartimg { 
@@ -270,4 +279,8 @@ div .chart {
 #item-charts {
   display: flex;
   margin: 10px 20px 50px 20px;
+}
+.col {
+  font-weight: 600;
+  font-size: 1.5em;
 }
