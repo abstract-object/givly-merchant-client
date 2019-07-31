@@ -37,7 +37,7 @@ class AnalyticsPage extends Component {
       labels: ['Friday', 'Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday' ],
       datasets: 
       [{
-        data:[3,7,2,1,0,0,0],
+        data:[4,6,3,7,2,1,0],
         backgroundColor: [
           'rgba(120, 82, 155, 0.3)',
           'rgba(120, 82, 155, 0.3)',
@@ -56,12 +56,13 @@ class AnalyticsPage extends Component {
       datasets: 
         [{
         data:[0,0,0,4,5,
-          3,7,2,10,3,
-          7,2,8,9,10,
-          3,7,2,8,9,
-          10,3,8,9,7,
+          3,7,2,5,3,
+          7,2,4,4,5,
+          3,8,2,4,4,
+          5,3,4,4,6,
           3,7,2,1,0],
         backgroundColor: [
+          'rgba(54, 162, 235, 0.3)',
           'rgba(54, 162, 235, 0.3)',
           'rgba(54, 162, 235, 0.3)',
           'rgba(54, 162, 235, 0.3)',
