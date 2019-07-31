@@ -234,8 +234,8 @@ div .chart {
   font-size: 5em;
   color: #007082;
   font-weight: 600;
-  align-self: center;
-  padding: 80px;
+  /* align-self: center; */
+  padding: 50px;
 }
 
 .time-setting, .time2-setting{
