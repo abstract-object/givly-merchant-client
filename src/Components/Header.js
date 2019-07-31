@@ -6,12 +6,12 @@ class Header extends Component {
   render() {
     return (
       <header className="nav">
-      <nav className="nav">
-        <span><img src={logo} width="113" height="42" className="givlyLogo" alt="givly"/></span>
+      <nav>
+        <span><img className="logo" src={logo} alt="Givly"/></span>
         <span id="navlinks">
-        <span id='dashboard'> <Link to="/">{this.props.merchant.storeName} Dashboard</Link></span> 
-        <span id='analytics'> <Link to="/analytics">Analytics</Link></span> 
-        <span id='logout' onClick={this.props.logout}><button>Log out</button></span>
+          <Link to="/">{this.props.merchant.storeName} Dashboard</Link>
+          <Link to="/analytics">Analytics</Link>
+          <button onClick={this.props.logout}>Log out</button>
         </span>
       </nav>
       </header>

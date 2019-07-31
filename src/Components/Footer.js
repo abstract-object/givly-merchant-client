@@ -21,12 +21,14 @@ class Footer extends Component {
             <ul><li><a>Contact</a></li></ul>
             
           </span>
-          <span>
+          <span className="footer-icons">
             <img src="/LandingPage/assets/app-store@3x.png" alt="App Store"/>
+            <span> </span>
             <img src="/LandingPage/assets/google-play@3x.png" alt="Google Play"/>
           </span>
-          <span>
+          <span className="footer-icons">
             <img src="/LandingPage/assets/facebook@3x.png" alt="Facebook"/>
+            <span> </span>
             <img src="/LandingPage/assets/twitter@3x.png" alt="Twitter"/>
           </span>
         </div>
