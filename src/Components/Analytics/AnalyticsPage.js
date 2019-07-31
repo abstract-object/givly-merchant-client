@@ -7,7 +7,7 @@ import ItemsWeek from './ItemsWeek.js';
 import RecipientsWeek from './RecipientsWeek.js';
 import RecipientsMonth from './RecipientsMonth.js';
 import ItemsMonth from './ItemsMonth.js';
-const cart = "/cart.png"
+const wallet = "/wallet.png"
 
 
 class AnalyticsPage extends Component {
@@ -251,7 +251,7 @@ class AnalyticsPage extends Component {
           ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b, 0)} GIVs`
           : `${this.state.givsMonthData.datasets[0].data.reduce((a,b) => a + b, 0)} GIVs` }
         </span>
-        {/* <img id='cartimg' src={cart} alt="cart"/> */}
+        <img id='cartimg' src={wallet} alt="cart"/>
         
       </div>
 
