@@ -214,6 +214,7 @@ class AnalyticsPage extends Component {
         
         
       </div> */}
+      <br/>
       <Container>
         <Row>
           <Col> 
@@ -247,8 +248,8 @@ class AnalyticsPage extends Component {
         { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
         <span id='total-givs'>
           { this.state.current === 1 
-          ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b, 0)} `
-          : `${this.state.givsMonthData.datasets[0].data.reduce((a,b) => a + b, 0)}` }
+          ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b, 0)} GIVs`
+          : `${this.state.givsMonthData.datasets[0].data.reduce((a,b) => a + b, 0)} GIVs` }
         </span>
         {/* <img id='cartimg' src={cart} alt="cart"/> */}
         
