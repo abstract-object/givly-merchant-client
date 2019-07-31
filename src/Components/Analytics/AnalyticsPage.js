@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Header from '../Header.js';
-import Footer from '../Footer.js'
+import { Container, Row, Col } from 'react-bootstrap';
 
 import GivsWeek from './GivsWeek.js';
 import GivsMonth from './GivsMonth.js';
@@ -13,18 +12,18 @@ const cart = "/cart.png"
 
 class AnalyticsPage extends Component {
   constructor(props) {
-  super(props);
+    super(props);
 
-  this.state = {
-    givsWeekData:{},
-    givsMonthData:{},
-    itemWData:{},
-    itemMData:{},
-    recipientWData:{},
-    recipientMData:{},
-    current:1,
-    error: null
-  }
+    this.state = {
+      givsWeekData:{},
+      givsMonthData:{},
+      itemWData:{},
+      itemMData:{},
+      recipientWData:{},
+      recipientMData:{},
+      current:1,
+      error: null
+    }
   }
 
   componentWillMount(){
@@ -111,10 +110,10 @@ class AnalyticsPage extends Component {
       }
     ]},
     itemMData: {
-      labels: ['Banana', 'Pants', 'Coffee', 'Gloves', 'Kite'],
+      labels: ['Bread', 'Potatoes', 'Coffee', 'Tea', 'Oranges'],
       datasets: 
       [{
-        data:[8,8,2,8,2],
+        data:[9,8,2,8,2],
         backgroundColor: [
           'rgba(255, 99, 132, 0.3)',
           'rgba(54, 162, 235, 0.3)',
@@ -211,35 +210,66 @@ class AnalyticsPage extends Component {
   render() {
     return (
     <div>
-      <div id='analytics-labels'>
-        <span className="time-setting"> 
-          <button onClick={this.toggle.bind(this, 1)}> Week </button> 
-        </span>
-        <span className="time-setting"> 
-          <button onClick={this.toggle.bind(this, 2)}> Month </button> 
-        </span>
-      </div>
-
-      <div id='givs-heading'>
+      {/* <div id='analytics-labels'>
+        
+        
+      </div> */}
+      <Container>
+        <Row>
+          <Col> 
+          <span className="time-setting"> 
+            <button onClick={this.toggle.bind(this, 1)}> Week </button> 
+          </span>
+          </Col>
+          
+          <Col> 
+          <span className="time-setting"> 
+            <button onClick={this.toggle.bind(this, 2)}> Month </button> 
+          </span>
+          </Col>
+          <Col> 
+          </Col>
+        </Row>
+        </Container>
+        <br/> <br/>
+      <Container>
+        <Row>
+          <Col> Total GIVs 
+          </Col>
+          <Col> 
+          </Col>
+        </Row>
+        </Container>
+      {/* <div id='givs-heading'>
         <span> Givs </span>
-      </div>
+      </div> */}
       <div id="givs-charts">
         { this.state.current === 1 ? <GivsWeek givsWeekData={this.state.givsWeekData} /> : <GivsMonth givsMonthData={this.state.givsMonthData} /> }
         <span id='total-givs'>
           { this.state.current === 1 
-          ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b, 0)}`
+          ? `${this.state.givsWeekData.datasets[0].data.reduce((a,b) => a + b, 0)} `
           : `${this.state.givsMonthData.datasets[0].data.reduce((a,b) => a + b, 0)}` }
         </span>
-        <img id='cartimg' src={cart} alt="cart"/>
+        {/* <img id='cartimg' src={cart} alt="cart"/> */}
         
       </div>
 
-      <div id='analytics-labels'>
+      <br/><br/>
+      <Container>
+        <Row>
+          <Col> Most Popular Items
+          </Col>
+          <Col> &nbsp;&nbsp;&nbsp;&nbsp; # of Unique Recipients
+          </Col>
+        </Row>
+      </Container>
+      {/* <div id='analytics-labels'>
         <div id='givs-heading'>
+          
           <span> Most Popular Items </span>
           <span> Most Popular Items </span>
         </div>
-      </div>
+      </div> */}
 
       <div id="item-charts">
         { this.state.current === 1 ? <ItemsWeek itemWData={this.state.itemWData} /> : <ItemsMonth itemMData={this.state.itemMData} /> }
